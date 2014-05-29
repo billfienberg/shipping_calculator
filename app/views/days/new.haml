@@ -1,0 +1,29 @@
+%h1 Add a New Day
+= form_for @day do |d|
+  = d.label :destination_id
+  = d.text_field :destination_id
+  = d.label :carrier_id
+  = d.text_field :carrier_id
+  %br
+  = d.label :sn
+  = d.text_field :sn
+  %br
+  = d.label :m
+  = d.text_field :m
+  %br
+  = d.label :t
+  = d.text_field :t
+  %br
+  = d.label :w
+  = d.text_field :w
+  %br
+  = d.label :r
+  = d.text_field :r
+  %br
+  = d.label :f
+  = d.text_field :f
+  %br
+  = d.label :sa
+  = d.text_field :sa
+  %br
+  = d.submit

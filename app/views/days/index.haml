@@ -1,0 +1,25 @@
+%h1 Days
+%table
+  %tr
+    %th Day ID
+    %th Destination ID
+    %th Carrier ID
+    %th Sunday
+    %th Monday 
+    %th Tuesday
+    %th Wednesday
+    %th Thursday
+    %th Friday
+    %th Saturday
+  -@days.each do |d|
+    %tr
+      %td= d.id
+      %td= d.destination_id
+      %td= d.carrier_id
+      %td= d.sn
+      %td= d.m
+      %td= d.t
+      %td= d.w
+      %td= d.r
+      %td= d.f
+      %td= d.sa

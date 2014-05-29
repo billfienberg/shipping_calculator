@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529204304) do
+ActiveRecord::Schema.define(version: 20140529211317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,23 @@ ActiveRecord::Schema.define(version: 20140529204304) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "days", force: true do |t|
+    t.integer  "destination_id"
+    t.integer  "carrier_id"
+    t.boolean  "sn"
+    t.boolean  "m"
+    t.boolean  "t"
+    t.boolean  "w"
+    t.boolean  "r"
+    t.boolean  "f"
+    t.boolean  "sa"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "days", ["carrier_id"], name: "index_days_on_carrier_id", using: :btree
+  add_index "days", ["destination_id"], name: "index_days_on_destination_id", using: :btree
 
   create_table "destinations", force: true do |t|
     t.datetime "created_at"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529211317) do
+ActiveRecord::Schema.define(version: 20140529212649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,24 @@ ActiveRecord::Schema.define(version: 20140529211317) do
   add_index "days", ["carrier_id"], name: "index_days_on_carrier_id", using: :btree
   add_index "days", ["destination_id"], name: "index_days_on_destination_id", using: :btree
 
+  create_table "destination_holidays", force: true do |t|
+    t.integer  "destination_id"
+    t.integer  "holiday_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "destination_holidays", ["destination_id"], name: "index_destination_holidays_on_destination_id", using: :btree
+  add_index "destination_holidays", ["holiday_id"], name: "index_destination_holidays_on_holiday_id", using: :btree
+
   create_table "destinations", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "holidays", force: true do |t|
+    t.string   "name"
+    t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -69,5 +86,18 @@ ActiveRecord::Schema.define(version: 20140529211317) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "transit_times", force: true do |t|
+    t.integer  "carrier_id"
+    t.integer  "origin_id"
+    t.integer  "destination_id"
+    t.integer  "number_of_days"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "transit_times", ["carrier_id"], name: "index_transit_times_on_carrier_id", using: :btree
+  add_index "transit_times", ["destination_id"], name: "index_transit_times_on_destination_id", using: :btree
+  add_index "transit_times", ["origin_id"], name: "index_transit_times_on_origin_id", using: :btree
 
 end

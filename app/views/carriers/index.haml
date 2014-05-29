@@ -1,0 +1,9 @@
+%h1 Carriers
+%table
+  %tr
+    %th Carrier ID
+    %th Carrier Name
+  -@carriers.each do |c|
+    %tr
+      %td= c.id
+      %td= c.name

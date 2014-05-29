@@ -1,0 +1,5 @@
+%h1 Add a New Carrier
+= form_for @carriers do |c|
+  = c.label :name
+  = c.text_field :name
+  = c.submit

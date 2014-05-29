@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  destination_id: 
+  carrier_id: 
+  sn: false
+  m: false
+  t: false
+  w: false
+  r: false
+  f: false
+  sa: false
+
+two:
+  destination_id: 
+  carrier_id: 
+  sn: false
+  m: false
+  t: false
+  w: false
+  r: false
+  f: false
+  sa: false

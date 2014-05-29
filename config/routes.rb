@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#index'
-  resources :carrier_destinations, :carriers, :destinations, :origins
+  resources :carrier_destinations, :carriers, :destinations, :origins, :days
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

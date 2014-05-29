@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140529202800) do
+ActiveRecord::Schema.define(version: 20140529204304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,18 +26,29 @@ ActiveRecord::Schema.define(version: 20140529202800) do
   add_index "carrier_destinations", ["carrier_id"], name: "index_carrier_destinations_on_carrier_id", using: :btree
   add_index "carrier_destinations", ["destination_id"], name: "index_carrier_destinations_on_destination_id", using: :btree
 
-  create_table "carrier_detinations", force: true do |t|
-    t.integer  "destination_id"
-    t.integer  "carrier_id"
+  create_table "carriers", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "carrier_detinations", ["carrier_id"], name: "index_carrier_detinations_on_carrier_id", using: :btree
-  add_index "carrier_detinations", ["destination_id"], name: "index_carrier_detinations_on_destination_id", using: :btree
+  create_table "destinations", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-  create_table "carriers", force: true do |t|
+  create_table "locations", force: true do |t|
+    t.string   "type"
     t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "origins", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

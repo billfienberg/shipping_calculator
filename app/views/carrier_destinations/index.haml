@@ -1,0 +1,14 @@
+%h1 Carrier Destinations
+%table
+  %tr
+    %th Carrier ID
+    %th Carrier Name
+    %th Destination ID
+    %th Destination Name
+    %th Destination Address
+    %th Destination City
+    %th Destination State
+    %th Destination Name
+  -@carrier_destinations.each do |cd|
+    %tr
+      %td= cd.carrier_id

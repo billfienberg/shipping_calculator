@@ -1,0 +1,7 @@
+%h1 Add a New Carrier Destination
+= form_for @carrier_destinations do |c|
+  = c.label :carrier_id
+  = c.text_field :carrier_id
+  = c.label :destination_id
+  = c.text_field :destination_id
+  = c.submit

@@ -7,7 +7,7 @@
     %th City
     %th State
     %th Zip
-    %th Approved Carrier 1
+    %th Approved Carriers
     %th Approved Carrier 2
     %th Approved Carrier 3
     %th 
@@ -34,6 +34,14 @@
       - else
         - ac3 = CarrierDestination.where(destination_id: d.id).third.carrier.name
         %td= link_to ac3, '', class: "carrier #{ac3}", value: "#{ac3}"
+
+        = content_tag(:td, class:"carriers") do
+          - concat link_to ac1, '', class:"carrier #{ac1}", value: "#{ac1}" 
+          - concat ", "
+          - concat link_to ac2, '', class:"carrier #{ac2}", value: "#{ac2}"
+          - concat " "
+          - concat link_to ac3, '', class:"carrier #{ac3}", value: "#{ac3}"
+
     %tr.days
       %td Sunday
       %td Monday

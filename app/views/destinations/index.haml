@@ -23,18 +23,18 @@
         %td= button_to "Add Approved Carrier"
       - else
         - ac1 = CarrierDestination.where(destination_id: d.id).first.carrier.name
-        %td= link_to ac1, '#', class: 'carrier'
+        %td= link_to ac1, '', class: "carrier #{ac1}", value: "#{ac1}"
       - if CarrierDestination.where(destination_id: d.id).second == nil 
         %td= button_to "Add Approved Carrier"
       - else
         - ac2 = CarrierDestination.where(destination_id: d.id).second.carrier.name
-        %td= link_to ac2, "#", class: 'carrier'
+        %td= link_to ac2, '', class: "carrier #{ac2}", value: "#{ac2}"
       - if CarrierDestination.where(destination_id: d.id).third == nil 
         %td= button_to "Add Approved Carrier"
       - else
         - ac3 = CarrierDestination.where(destination_id: d.id).third.carrier.name
-        %td= link_to ac3, "#", class: 'carrier'
-    %tr
+        %td= link_to ac3, '', class: "carrier #{ac3}", value: "#{ac3}"
+    %tr.days
       %td Sunday
       %td Monday
       %td Tuesday
@@ -42,7 +42,7 @@
       %td Thursday
       %td Friday
       %td Saturday
-    %tr
+    %tr{class:"allowed #{ac1}"}
       - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first == nil
       - else
         %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first.sn
@@ -64,7 +64,7 @@
       - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first == nil
       - else
         %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first.sa
-    %tr
+    %tr{class:"allowed #{ac2}"}
       - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first == nil
       - else
         %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first.sn
@@ -86,7 +86,7 @@
       - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first == nil
       - else
         %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first.sa
-    %tr
+    %tr{class:"allowed #{ac3}"}
       - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first == nil
       - else
         %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first.sn
@@ -108,6 +108,3 @@
       - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first == nil
       - else
         %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first.sa
-
-
-

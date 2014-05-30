@@ -34,7 +34,7 @@
     %tr
       %td= c.carrier.id
       %td= c.carrier.name
-      -@transit_time = TransitTime.where(["origin_id=? and destination_id=? and carrier_id=?",@origin, @destination, c.carrier.id]).first.days
+      -@transit_time = TransitTime.where(["origin_id=? and destination_id=? and carrier_id=?",@origin, @destination, c.carrier.id]).first.number_of_days
       %td= @transit_time
       -@earliest = (DateTime.parse("14/4/2014")+@transit_time)
       -@dotw = @earliest.strftime('%A') 
@@ -96,7 +96,3 @@ Your recommended carrier(s) are:
 - @recommended.each do |r|
   %li= r
         
-
-=link_to 'Sign in', user_session_path, :method => :post
-
-=link_to 'Sign out', destroy_user_session_path, :method => :delete

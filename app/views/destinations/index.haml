@@ -20,12 +20,94 @@
       %td= d.state
       %td= d.zip
       - if CarrierDestination.where(destination_id: d.id).first == nil 
+        %td= button_to "Add Approved Carrier"
       - else
-        %td= link_to CarrierDestination.where(destination_id: d.id).first.carrier.name, "#", class: "carrier"
+        - ac1 = CarrierDestination.where(destination_id: d.id).first.carrier.name
+        %td= link_to ac1, '#', class: 'carrier'
       - if CarrierDestination.where(destination_id: d.id).second == nil 
+        %td= button_to "Add Approved Carrier"
       - else
-        %td= link_to CarrierDestination.where(destination_id: d.id).second.carrier.name, "#", class: "carrier"
+        - ac2 = CarrierDestination.where(destination_id: d.id).second.carrier.name
+        %td= link_to ac2, "#", class: 'carrier'
       - if CarrierDestination.where(destination_id: d.id).third == nil 
+        %td= button_to "Add Approved Carrier"
       - else
-        %td= link_to CarrierDestination.where(destination_id: d.id).third.carrier.name, "#", class: "carrier"
+        - ac3 = CarrierDestination.where(destination_id: d.id).third.carrier.name
+        %td= link_to ac3, "#", class: 'carrier'
+    %tr
+      %td Sunday
+      %td Monday
+      %td Tuesday
+      %td Wednesday
+      %td Thursday
+      %td Friday
+      %td Saturday
+    %tr
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first.sn
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first.m
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first.t
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first.w
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first.r
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first.f
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac1)).first.sa
+    %tr
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first.sn
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first.m
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first.t
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first.w
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first.r
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first.f
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac2)).first.sa
+    %tr
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first.sn
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first.m
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first.t
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first.w
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first.r
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first.f
+      - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first == nil
+      - else
+        %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first.sa
+
+
 

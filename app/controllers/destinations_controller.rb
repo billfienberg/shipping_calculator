@@ -8,9 +8,9 @@ def index
   end
 
   def create
-    @destinations = Destination.new(destination_params)
-    if @destinations.save
-      redirect_to @destinations
+    @destination = Destination.new(destination_params)
+    if @destination.save
+      redirect_to @destination
     else
       render "new"
     end

@@ -1,0 +1,13 @@
+%h3 Add a new Shipping Destination
+= form_for @destination do |d|
+  = d.label :name, "Location Name"
+  = d.text_field :name
+  = d.label :address
+  = d.text_field :address
+  = d.label :city
+  = d.text_field :city
+  = d.label :state
+  = d.text_field :state
+  = d.label :zip
+  = d.text_field :zip
+  = d.submit

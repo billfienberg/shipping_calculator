@@ -2,6 +2,10 @@ table > * {
   text-align: center;
 }
 
+th, td {
+  border: 1px solid black;
+}
+
 .days, .allowed {
   display: none;
 }

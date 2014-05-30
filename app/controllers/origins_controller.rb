@@ -4,13 +4,13 @@ class OriginsController < ApplicationController
   end
 
   def new
-    @origins = Origin.new
+    @origin = Origin.new
   end
 
   def create
-    @origins = Origin.new(origin_params)
-    if @origins.save
-      redirect_to @origins
+    @origin = Origin.new(origin_params)
+    if @origin.save
+      redirect_to @origin
     else
       render "new"
     end

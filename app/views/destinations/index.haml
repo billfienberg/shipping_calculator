@@ -21,11 +21,11 @@
       %td= d.zip
       - if CarrierDestination.where(destination_id: d.id).first == nil 
       - else
-        %td= CarrierDestination.where(destination_id: d.id).first.carrier.name
+        %td= link_to CarrierDestination.where(destination_id: d.id).first.carrier.name, "#", class: "carrier"
       - if CarrierDestination.where(destination_id: d.id).second == nil 
       - else
-        %td= CarrierDestination.where(destination_id: d.id).second.carrier.name
+        %td= link_to CarrierDestination.where(destination_id: d.id).second.carrier.name, "#", class: "carrier"
       - if CarrierDestination.where(destination_id: d.id).third == nil 
       - else
-        %td= CarrierDestination.where(destination_id: d.id).third.carrier.name
+        %td= link_to CarrierDestination.where(destination_id: d.id).third.carrier.name, "#", class: "carrier"
 

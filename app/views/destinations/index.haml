@@ -8,9 +8,6 @@
     %th State
     %th Zip
     %th Approved Carriers
-    %th Approved Carrier 2
-    %th Approved Carrier 3
-    %th 
   - @destinations.each do |d|
     %tr.location
       %td= d.id
@@ -20,28 +17,22 @@
       %td= d.state
       %td= d.zip
       - if CarrierDestination.where(destination_id: d.id).first == nil 
-        %td= button_to "Add Approved Carrier"
       - else
         - ac1 = CarrierDestination.where(destination_id: d.id).first.carrier.name
-        %td= link_to ac1, '', class: "carrier #{ac1}", value: "#{ac1}"
       - if CarrierDestination.where(destination_id: d.id).second == nil 
-        %td= button_to "Add Approved Carrier"
       - else
         - ac2 = CarrierDestination.where(destination_id: d.id).second.carrier.name
-        %td= link_to ac2, '', class: "carrier #{ac2}", value: "#{ac2}"
       - if CarrierDestination.where(destination_id: d.id).third == nil 
-        %td= button_to "Add Approved Carrier"
       - else
         - ac3 = CarrierDestination.where(destination_id: d.id).third.carrier.name
-        %td= link_to ac3, '', class: "carrier #{ac3}", value: "#{ac3}"
 
-        = content_tag(:td, class:"carriers") do
-          - concat link_to ac1, '', class:"carrier #{ac1}", value: "#{ac1}" 
-          - concat ", "
-          - concat link_to ac2, '', class:"carrier #{ac2}", value: "#{ac2}"
-          - concat " "
-          - concat link_to ac3, '', class:"carrier #{ac3}", value: "#{ac3}"
-
+      = content_tag(:td, class:"carriers") do
+        - concat link_to ac1, '', class:"carrier #{ac1}", value: "#{ac1}" 
+        - concat " "
+        - concat link_to ac2, '', class:"carrier #{ac2}", value: "#{ac2}"
+        - concat " "
+        - concat link_to ac3, '', class:"carrier #{ac3}", value: "#{ac3}"
+      %td= button_to "Add Approved Carrier"
     %tr.days
       %td Sunday
       %td Monday

@@ -42,3 +42,6 @@ gem 'hirb', '~> 0.7.2'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :development, :test do
+  gem 'jasmine'
+end

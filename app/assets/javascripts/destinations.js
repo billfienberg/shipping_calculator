@@ -15,14 +15,12 @@ $(document).ready(function(){
     var current = clicks[clicks.length-1];
     var previous = clicks[clicks.length-2];
     var two_clicks_ago = clicks[clicks.length-3];
-    console.log(clicks);
     
     // this = <a class="carrier">
     // this.parent() = <td class="carriers">
     // this.parent().parent() = <tr class="location">
     // var days = this.parent().parent().next() = <tr class="days">
     // var carrier = this.parent().parent().nextUntil() = All <tr> elements with class="name" until it reaches a <tr> element with class="location"
-    console.log(click);
     if (current.id === previous.id && current.context === previous.context && click % 2 === 0) {
       if (previous.context === current.context) {
         $(".days, .allowed").hide();

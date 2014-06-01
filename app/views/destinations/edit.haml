@@ -1,0 +1,14 @@
+%h3 Destinations
+= form_for @destination do |d|
+  = d.label :name
+  = d.text_field :name
+  = d.label :address
+  = d.text_field :address
+  = d.label :city
+  = d.text_field :city
+  = d.label :state
+  = d.text_field :state
+  = d.label :zip
+  = d.text_field :zip
+  = d.submit
+= link_to "View All Destinations", destinations_path

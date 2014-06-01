@@ -32,7 +32,9 @@
         - concat link_to ac2, '', class:"carrier #{ac2}", value: "#{ac2}"
         - concat " "
         - concat link_to ac3, '', class:"carrier #{ac3}", value: "#{ac3}"
-      %td= button_to "Add Approved Carrier"
+      %td= link_to "View", destination_path(d.id)
+      %td= link_to "Edit", edit_destination_path(d.id)
+      %td= link_to "Delete", '#'
     %tr.days
       %td Sunday
       %td Monday

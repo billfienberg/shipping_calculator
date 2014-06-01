@@ -1,2 +1,37 @@
-<h1>Destinations#show</h1>
-<p>Find me in app/views/destinations/show.html.erb</p>
+%h3 Destinations
+%table
+  %tr
+    %th Location ID
+    %th Name
+    %th Address
+    %th City
+    %th State
+    %th Zip
+    %th Approved Carriers
+  %tr
+    %td= @destination.id
+    %td= @destination.name
+    %td= @destination.address
+    %td= @destination.city
+    %td= @destination.state
+    %td= @destination.zip
+    - if CarrierDestination.where(destination_id: @destination.id).first == nil 
+    - else
+      - ac1 = CarrierDestination.where(destination_id: @destination.id).first.carrier.name
+    - if CarrierDestination.where(destination_id: @destination.id).second == nil 
+    - else
+      - ac2 = CarrierDestination.where(destination_id: @destination.id).second.carrier.name
+    - if CarrierDestination.where(destination_id: @destination.id).third == nil 
+    - else
+      - ac3 = CarrierDestination.where(destination_id: @destination.id).third.carrier.name
+
+    = content_tag(:td, class:"carriers") do
+      - concat link_to ac1, '', class:"carrier #{ac1}", value: "#{ac1}" 
+      - concat " "
+      - concat link_to ac2, '', class:"carrier #{ac2}", value: "#{ac2}"
+      - concat " "
+      - concat link_to ac3, '', class:"carrier #{ac3}", value: "#{ac3}"
+    %td= link_to "Add Approved Carrier", '#'
+    %td= link_to "Edit", edit_destination_path
+    %td= link_to "Delete", destination_path, method: "delete"
+= link_to "View All Destinations", destinations_path

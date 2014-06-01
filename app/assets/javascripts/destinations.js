@@ -3,7 +3,7 @@ $(document).ready(function(){
   var clicks = [{click:NaN, id:NaN, context:NaN}];
 
 
-  $("td a").on("click", function(e){
+  $("td .carrier").on("click", function(e){
     e.preventDefault();
     click += 1;
     var id = $(this).parent().prev().prev().prev().prev().prev().prev().html();

@@ -14,6 +14,7 @@ $(document).ready(function(){
     clicks.push({click:click, id:id, context:context});
     var current = clicks[clicks.length-1];
     var previous = clicks[clicks.length-2];
+    var two_clicks_ago = clicks[clicks.length-3];
     console.log(clicks);
     
     // this = <a class="carrier">
@@ -23,23 +24,16 @@ $(document).ready(function(){
     // var carrier = this.parent().parent().nextUntil() = All <tr> elements with class="name" until it reaches a <tr> element with class="location"
     console.log(click);
     if (current.id === previous.id && current.context === previous.context && click % 2 === 0) {
-      $(".days, .allowed").hide();
-      if (current.click - 1 === previous.click) {
-        if (current.click - 1 === previous.click - 1) {
-          days.show();
-          carrier.show();
-        } else {
-          days.show();
-          carrier.show();
-        }
+      if (previous.context === current.context) {
+        $(".days, .allowed").hide();
+        current.context = NaN;
       } else {
         days.show();
         carrier.show();
       }
     } else if (current.id === previous.id && current.context === previous.context && click % 2 !== 0) {
-      $(".days, .allowed").hide();
-      console.log("Odd is working")
-      if (current.click === previous.click + 1) {
+      if (previous.context === current.context) {
+        current.context = NaN;
         $(".days, .allowed").hide();
       } else {
         days.show();
@@ -47,28 +41,20 @@ $(document).ready(function(){
       }
     } else {
       if (current.id === previous.id && days.css("display") !== "none") {
-        console.log("You clicked on the same row.");
-        console.log("display: " + days.css("display"));
         $(".days, .allowed").hide();
         days.show();
         carrier.show();
       } else if (current.id === previous.id && days.css("display") === "none") {
-        console.log("You clicked on the same row.");
-        console.log("display: " + days.css("display"));
         $(".days, .allowed").hide();
         days.show();
         carrier.show();
       } else if (current.id !== previous.id && days.css("display") !== "none") {
-        console.log("You clicked on a different row.");
-        console.log("display: " + days.css("display"));
         $(".days, .allowed").hide();
       } else if (current.id !== previous.id && days.css("display") === "none") {
-        console.log("You clicked on a different row.");
-        console.log("display: " + days.css("display"));
         $(".days, .allowed").hide();
         days.show();
         carrier.show();
-      } else {}
+      }
     }
 
   });

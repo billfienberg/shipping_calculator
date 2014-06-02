@@ -53,7 +53,7 @@
 				%td= "N/A"
 			- else
 				- @transit_time = TransitTime.where(origin_id: @origin.id, destination_id: @destination.id, carrier_id: c.carrier_id).first.number_of_days.to_i
-				%td= @transit_time
+				%td= "#{@transit_time} day(s)"
 				- @earliest = (@pickup_date.to_date + @transit_time.days)
 				- @second_earliest = (@pickup_date.to_date + @transit_time.days + 1.days)
 				- @dotw = @earliest.strftime('%A')
@@ -93,6 +93,17 @@
 							- @recommended.push(Carrier.find(c.carrier_id).name)
 						- else 
 							No
+%br
+%table
+	%tr
+		%th{colspan:2} Holidays
+	%tr
+		%th Name
+		%th Date
+	- @holidays.each do |h|
+		%tr
+			%td= Holiday.find(h.id).name
+			%td= Holiday.find(h.id).date
 %h4 Recomended Carriers							
 %ul
 	- @recommended.each do |r|

@@ -1,10 +1,6 @@
 class DestinationsController < ApplicationController
-def index
-    if params[:search] && params[:trees]
-      @origins = Origin.all
-    else 
-      @destinations = Destination.all
-    end
+  def index
+    @destinations = Destination.all
   end
 
   def new

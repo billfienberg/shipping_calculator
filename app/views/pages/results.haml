@@ -1,0 +1,34 @@
+%table 
+	%tr
+		%th{colspan:6} Origin
+		%th{colspan:6} Destination
+	%tr
+		%th Origin ID
+		%th Name
+		%th Address
+		%th City
+		%th State
+		%th Zip
+		%th Destination ID
+		%th Name
+		%th Address
+		%th City
+		%th State
+		%th Zip
+	%tr
+		%td= @origin.id
+		%td= @origin.name
+		%td= @origin.address
+		%td= @origin.city
+		%td= @origin.state
+		%td= @origin.zip
+		%td= @destination.id
+		%td= @destination.name
+		%td= @destination.address
+		%td= @destination.city
+		%td= @destination.state
+		%td= @destination.zip
+	%tr
+		%th Carrier
+	%tr
+		%td Stuff

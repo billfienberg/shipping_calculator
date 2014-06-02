@@ -1,13 +1,19 @@
-= form_tag destinations_path, method: :get do
+= form_tag pages_results_path, method: :get do
   = label_tag :origin
   - origin_options = []
   - @origins.each do |o|
     - origin_options.push("<option value=#{o.id} class='origin'>#{o.name}: #{o.address} #{o.city} #{o.state} #{o.zip}</option>".html_safe)
     = puts origin_options
   = select_tag :origin, options_for_select(origin_options), {class: "origins"}
-
+  %br
+  = label_tag :destination
+  - destination_options = []
+  - @destinations.each do |d|
+    - destination_options.push("<option value=#{d.id} class='destination'>#{d.name}: #{d.address} #{d.city} #{d.state} #{d.zip}</option>".html_safe)
+    = puts destination_options
+  = select_tag :destination, options_for_select(destination_options), {class: "destinations"}
   %br
   = label_tag :pickup_date
-  = text_field_tag :pickup_date
+  = text_field_tag :pickup_date, '', class:"pickup_date", required:true
   %br
   = submit_tag "Find Recommended Carrier(s)"

@@ -1,5 +1,5 @@
 $(document).ready(function(){
 
-  $(".origins option").filter(":even").remove();
+  $( ".origins option, .destinations option" ).filter( ":even" ).remove();
 
 });

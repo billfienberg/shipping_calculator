@@ -30,13 +30,38 @@
 		%td= @destination.zip
 	%tr
 		%th Carrier
-		%th Sunday
-		%th Monday
-		%th Tuesday
-		%th Wednesday
-		%th Thursday
-		%th Friday
-		%th Saturday
+		%th Pickup Date
+		%th Transit Time
+		%th Earliest Possible Delivery Day
+		/ %th Sunday
+		/ %th Monday
+		/ %th Tuesday
+		/ %th Wednesday
+		/ %th Thursday
+		/ %th Friday
+		/ %th Saturday
+
 	- @carriers.each do |c|
 		%tr
 			%td= Carrier.find(c.carrier_id).name
+			- @pickup_day = Date.strptime(@pickup_date, '%m/%d/%Y')
+			%td= @pickup_day.strftime('%A %B %d, %Y')
+			- if TransitTime.where(origin_id: @origin.id, destination_id: @destination.id, carrier_id: c.carrier_id).first == nil
+				%td= "N/A"
+			- else
+				- @transit_time = TransitTime.where(origin_id: @origin.id, destination_id: @destination.id, carrier_id: c.carrier_id).first.number_of_days
+				%td= @transit_time
+			- if @transit_time.is_a? Integer
+				- @earliest = (DateTime.parse(@pickup_date) + @transit_time)
+				%td= @earliest
+			- else
+				%td= "N/A"
+				
+			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sn
+			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.m
+			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.t
+			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.w
+			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.r
+			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.f
+			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sa
+	

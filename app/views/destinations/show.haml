@@ -48,6 +48,7 @@
     - else 
       %td= CarrierDestination.where(destination_id: @destination.id).first.carrier.name
       - if Day.where(destination_id: @destination.id).first == nil
+        %td= link_to "Update this carrier's available delivery days", destination_carrier_path(@destination)
       - else 
         %td= Day.where(destination_id: @destination.id).first.sn
         %td= Day.where(destination_id: @destination.id).first.m
@@ -82,4 +83,11 @@
         %td= Day.where(destination_id: @destination.id).third.r
         %td= Day.where(destination_id: @destination.id).third.f
         %td= Day.where(destination_id: @destination.id).third.sa
+  %tr 
+    %td Holiday Name
+    %td Date
+  - @holidays.each do |h|
+    %tr
+      %td= h.holiday.name
+      %td= h.holiday.date
 = link_to "View All Destinations", destinations_path

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :destinations do 
     resources :carrier_destinations
     resources :holidays
+    resources :days
+    resources :carriers
   end
   resources :carrier_destinations, :carriers, :origins, :days, :destination_holidays, :holidays, :transit_times
   # The priority is based upon order of creation: first created -> highest priority.

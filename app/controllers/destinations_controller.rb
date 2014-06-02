@@ -18,6 +18,7 @@ def index
 
   def show
     @destination = Destination.find(params[:id])
+    @holidays = DestinationHoliday.where(destination_id: @destination.id)
   end
 
   def edit

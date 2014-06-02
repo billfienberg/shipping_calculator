@@ -20,6 +20,12 @@ def index
     @destination_holiday = DestinationHoliday.find(params[:id])
   end
 
+  def edit
+    @destination_holiday = DestinationHoliday.find(params[:destination_id])
+  end
+
+  def update
+  end
 
 private
   def destination_holiday_params

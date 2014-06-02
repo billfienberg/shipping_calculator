@@ -34,14 +34,14 @@
     %td= link_to "Edit", edit_destination_path
     %td= link_to "Delete", destination_path, method: "delete"
   %tr
-    %td Carrier
-    %td Sunday
-    %td Monday
-    %td Tuesday
-    %td Wednesday
-    %td Thursday
-    %td Friday
-    %td Saturday
+    %th Carrier
+    %th Sunday
+    %th Monday
+    %th Tuesday
+    %th Wednesday
+    %th Thursday
+    %th Friday
+    %th Saturday
   %tr
     - if CarrierDestination.where(destination_id: @destination.id).first == nil
     - else 
@@ -83,8 +83,8 @@
         %td= Day.where(destination_id: @destination.id).third.f
         %td= Day.where(destination_id: @destination.id).third.sa
   %tr 
-    %td Holiday Name
-    %td Date
+    %th Holiday Name
+    %th Date
   - @holidays.each do |h|
     %tr
       %td= h.holiday.name
@@ -94,5 +94,7 @@
 = link_to "Add Approved Delivery Days to a Carrier", new_destination_day_path(@destination)
 %br
 = link_to "Add a New Holiday", new_destination_destination_holiday_path(@destination)
+%br
+= link_to "Edit This Location's Holidays", '#'
 %br
 = link_to "View All Destinations", destinations_path

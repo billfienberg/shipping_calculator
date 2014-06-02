@@ -11,6 +11,7 @@ class PagesController < ApplicationController
     if params[:origin] && params[:destination] && params[:pickup_date] 
       @origin = Origin.find(params[:origin])
       @destination = Destination.find(params[:destination])
+      @carriers = CarrierDestination.where(destination_id: @destination.id)
       @pickup_date = params[:pickup_date]
     else 
       redirect_to pages_calculate_path

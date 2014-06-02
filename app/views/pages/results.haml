@@ -30,5 +30,13 @@
 		%td= @destination.zip
 	%tr
 		%th Carrier
-	%tr
-		%td Stuff
+		%th Sunday
+		%th Monday
+		%th Tuesday
+		%th Wednesday
+		%th Thursday
+		%th Friday
+		%th Saturday
+	- @carriers.each do |c|
+		%tr
+			%td= Carrier.find(c.carrier_id).name

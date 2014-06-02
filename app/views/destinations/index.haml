@@ -109,3 +109,4 @@
       - if Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first == nil
       - else
         %td= Day.where(destination_id: d.id, carrier_id: Carrier.where(name:ac3)).first.sa
+= link_to "Add a New Destination", new_destination_path

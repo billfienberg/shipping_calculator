@@ -4,7 +4,7 @@ def index
   end
 
   def new
-    @destination_holidays = DestinationHoliday.new
+    @destination_holiday = DestinationHoliday.new
   end
 
   def create

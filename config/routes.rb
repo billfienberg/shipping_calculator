@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'pages/index', to: 'pages#index'
   resources :destinations do 
     resources :carrier_destinations
-    resources :holidays
+    resources :destination_holidays
     resources :days
     resources :carriers
   end

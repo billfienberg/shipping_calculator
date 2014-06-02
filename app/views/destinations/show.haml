@@ -31,7 +31,6 @@
       - concat link_to ac2, '', class:"carrier #{ac2}", value: "#{ac2}"
       - concat " "
       - concat link_to ac3, '', class:"carrier #{ac3}", value: "#{ac3}"
-    %td= link_to "Add Approved Carrier", new_destination_carrier_destination_path(@destination.id)
     %td= link_to "Edit", edit_destination_path
     %td= link_to "Delete", destination_path, method: "delete"
   %tr
@@ -48,7 +47,7 @@
     - else 
       %td= CarrierDestination.where(destination_id: @destination.id).first.carrier.name
       - if Day.where(destination_id: @destination.id).first == nil
-        %td= link_to "Update this carrier's available delivery days", destination_carrier_path(@destination)
+        / # %td= link_to "Update this carrier's available delivery days", destination_carrier_path(@destination)
       - else 
         %td= Day.where(destination_id: @destination.id).first.sn
         %td= Day.where(destination_id: @destination.id).first.m
@@ -90,4 +89,10 @@
     %tr
       %td= h.holiday.name
       %td= h.holiday.date
+= link_to "Add Approved Carrier", new_destination_carrier_destination_path(@destination.id)
+%br
+= link_to "Add Approved Delivery Days to a Carrier", new_destination_day_path(@destination)
+%br
+= link_to "Add a New Holiday", new_destination_destination_holiday_path(@destination)
+%br
 = link_to "View All Destinations", destinations_path

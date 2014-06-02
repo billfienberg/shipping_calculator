@@ -69,28 +69,28 @@
 					%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.f
 					%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sa
 					- if @dotw == "Sunday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sn == true
-						Yes
+						%td Yes
 						- @recommended.push(Carrier.find(c.carrier_id).name)
 					- elsif @dotw == "Monday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.m == true
-						Yes
+						%td Yes
 						- @recommended.push(Carrier.find(c.carrier_id).name)
 					- elsif @dotw == "Tuesday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.t == true
-						Yes
+						%td Yes
 						- @recommended.push(Carrier.find(c.carrier_id).name)
 					- elsif @dotw == "Wednesday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.w == true
-						Yes
+						%td Yes
 						- @recommended.push(Carrier.find(c.carrier_id).name)
 					- elsif @dotw == "Thursday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.r == true
-						Yes
+						%td Yes
 						- @recommended.push(Carrier.find(c.carrier_id).name)
 					- elsif @dotw == "Friday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.f == true
-						Yes
+						%td Yes
 						- @recommended.push(Carrier.find(c.carrier_id).name)
 					- elsif @dotw == "Saturday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sa == true
-						Yes
+						%td Yes
 						- @recommended.push(Carrier.find(c.carrier_id).name)
 					- else 
-						No
+						%td No
 %br
 %table
 	%tr

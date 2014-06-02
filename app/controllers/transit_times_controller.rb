@@ -4,7 +4,7 @@ def index
   end
 
   def new
-    @transit_times = TransitTime.new
+    @transit_time = TransitTime.new
   end
 
   def create
@@ -17,13 +17,13 @@ def index
   end
 
   def show
-    @transit_times = TransitTime.find(params[:id])
+    @transit_time = TransitTime.find(params[:id])
   end
 
 
 private
   def transit_time_params
-    params.require(:transit_time).permit(:carrier_id, :origin_id, :destination_id, :days)
+    params.require(:transit_time).permit(:carrier_id, :origin_id, :destination_id, :number_of_days)
   end
 
 end

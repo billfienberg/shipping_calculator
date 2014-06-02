@@ -1,2 +1,15 @@
-<h1>TransitTimes#show</h1>
-<p>Find me in app/views/transit_times/show.html.erb</p>
+%h3 Transit Time
+%table
+  %tr
+    %th Carrier
+    %th Origin
+    %th Destination
+    %th Transit Time
+  %tr
+    %td= @transit_time.carrier_id
+    %td= @transit_time.origin_id
+    %td= @transit_time.destination_id
+    - if @transit_time.number_of_days == 1
+      %td= "#{@transit_time.number_of_days} day"
+    - else 
+      %td= "#{@transit_time.number_of_days} days"

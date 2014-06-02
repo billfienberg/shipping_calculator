@@ -41,3 +41,6 @@
         %td= "#{tt.number_of_days} day"
       - else
         %td= "#{tt.number_of_days} days"
+      %td= link_to "Edit", edit_transit_time_path(tt.id)
+      %td= link_to "Delete", '#'
+= link_to "Add a New Transit Time", new_transit_time_path

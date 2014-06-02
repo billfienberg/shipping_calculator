@@ -1,2 +1,16 @@
-<h1>Origins#show</h1>
-<p>Find me in app/views/origins/show.html.erb</p>
+%h3 Origin
+%table
+  %tr
+    %th Name
+    %th Address
+    %th City
+    %th State
+    %th Zip
+  %tr
+    %td= @origin.name
+    %td= @origin.address
+    %td= @origin.city
+    %td= @origin.state
+    %td= @origin.zip
+    %td= link_to "Edit", edit_origin_path(@origin.id)
+    %td= link_to "Delete", '#'

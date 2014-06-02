@@ -17,9 +17,21 @@ class OriginsController < ApplicationController
   end
 
   def show
-    @origins = Origin.find(params[:id])
+    @origin = Origin.find(params[:id])
   end
 
+  def edit
+    @origin = Origin.find(params[:id])
+  end
+
+  def update
+    @origin = Origin.find(params[:id])
+    @origin.update(origin_params)
+    respond_to do |format|
+      format.html { redirect_to :origin }
+      format.js { render :layout => false }
+    end
+  end
 
 private
   def origin_params

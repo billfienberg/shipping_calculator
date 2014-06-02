@@ -4,5 +4,6 @@ class PagesController < ApplicationController
 
   def calculate
     @origins = Origin.all
+    @destinations = Destination.all
   end
 end

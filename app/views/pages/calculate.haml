@@ -2,11 +2,12 @@
   = label_tag :origin
   - origin_options = []
   - @origins.each do |o|
-    - origin_options.push("#{o.name}: #{o.address} #{o.city} #{o.state} #{o.zip}")
+    - origin_options.push("<option value=#{o.id} class='origin'>#{o.name}: #{o.address} #{o.city} #{o.state} #{o.zip}</option>".html_safe)
+    = puts origin_options
+  = select_tag :origin, options_for_select(origin_options), {class: "origins"}
 
-  = select_tag :origin, options_for_select(origin_options)
-  = label_tag :destination
-  = select_tag :destination
+  %br
   = label_tag :pickup_date
   = text_field_tag :pickup_date
+  %br
   = submit_tag "Find Recommended Carrier(s)"

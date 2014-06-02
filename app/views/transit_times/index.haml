@@ -1,15 +1,43 @@
 %h3 Transit Times
 %table
   %tr
+    %td
+    %td
+    %th{colspan: 6} Origin
+    %th{colspan: 6} Destination
+  %tr
     %th ID
-    %th Carrier ID
+    %th Carrier
     %th Origin ID
+    %th Origin Name
+    %th Origin Address
+    %th Origin City
+    %th Origin State
+    %th Origin Zip
     %th Destination ID
+    %th Destination Name
+    %th Destination Address
+    %th Destination City
+    %th Destination State
+    %th Destination Zip
     %th Transit Time
   - @transit_times.each do |tt|
     %tr
       %td= tt.id
-      %td= tt.carrier_id
+      %td= Carrier.find(tt.carrier_id).name
       %td= tt.origin_id
+      %td= Origin.find(tt.origin_id).name
+      %td= Origin.find(tt.origin_id).address
+      %td= Origin.find(tt.origin_id).city
+      %td= Origin.find(tt.origin_id).state
+      %td= Origin.find(tt.origin_id).zip
       %td= tt.destination_id
-      %td= tt.number_of_days
+      %td= Destination.find(tt.destination_id).name
+      %td= Destination.find(tt.destination_id).address
+      %td= Destination.find(tt.destination_id).city
+      %td= Destination.find(tt.destination_id).state
+      %td= Destination.find(tt.destination_id).zip
+      - if tt.number_of_days == 1
+        %td= "#{tt.number_of_days} day"
+      - else
+        %td= "#{tt.number_of_days} days"

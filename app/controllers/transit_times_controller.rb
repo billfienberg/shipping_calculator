@@ -13,9 +13,9 @@ def index
   end
 
   def create
-    @transit_times = TransitTime.new(transit_time_params)
-    if @transit_times.save
-      redirect_to @transit_times
+    @transit_time = TransitTime.new(transit_time_params)
+    if @transit_time.save
+      redirect_to transit_times_path
     else
       render "new"
     end

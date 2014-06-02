@@ -49,7 +49,7 @@
 			%td= Carrier.find(c.carrier_id).name
 			%td= @pickup_date
 			- if TransitTime.where(origin_id: @origin.id, destination_id: @destination.id, carrier_id: c.carrier_id).first == nil
-				%td= link_to "Update this carrier's transit time", '#'
+				%td= link_to "Update this carrier's transit time", new_destination_transit_time_path(@destination.id)
 				%td= "N/A"
 			- else
 				- @transit_time = TransitTime.where(origin_id: @origin.id, destination_id: @destination.id, carrier_id: c.carrier_id).first.number_of_days.to_i

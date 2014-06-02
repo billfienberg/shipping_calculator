@@ -10,8 +10,9 @@ class CarrierDestinationsController < ApplicationController
 
   def create
     @carrier_destinations = CarrierDestination.new(carrier_destination_params)
+    @destination = Destination.all
     if @carrier_destinations.save
-      redirect_to @carrier_destinations
+      redirect_to destinations_path
     else
       render "new"
     end

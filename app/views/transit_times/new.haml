@@ -1,0 +1,11 @@
+%h3 Add a New Transit Time
+= form_for @transit_time do |tt|
+  = tt.label :carrier_id
+  = tt.text_field :carrier_id
+  = tt.label :origin_id
+  = tt.text_field :origin_id
+  = tt.label :destination_id
+  = tt.text_field :destination_id
+  = tt.label :number_of_days
+  = tt.text_field :number_of_days
+  = tt.submit

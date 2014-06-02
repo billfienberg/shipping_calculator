@@ -15,5 +15,7 @@
 			%td= o.city
 			%td= o.state
 			%td= o.zip
+			%td= link_to "Edit", edit_origin_path(o.id)
+			%td= link_to "Delete", '#'
 
 = link_to "Add a New Origin", new_origin_path

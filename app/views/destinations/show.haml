@@ -1,2 +1,100 @@
-<h1>Destinations#show</h1>
-<p>Find me in app/views/destinations/show.html.erb</p>
+%h3 Destinations
+%table
+  %tr
+    %th Location ID
+    %th Name
+    %th Address
+    %th City
+    %th State
+    %th Zip
+    %th Approved Carriers
+  %tr
+    %td= @destination.id
+    %td= @destination.name
+    %td= @destination.address
+    %td= @destination.city
+    %td= @destination.state
+    %td= @destination.zip
+    - if CarrierDestination.where(destination_id: @destination.id).first == nil 
+    - else
+      - ac1 = CarrierDestination.where(destination_id: @destination.id).first.carrier.name
+    - if CarrierDestination.where(destination_id: @destination.id).second == nil 
+    - else
+      - ac2 = CarrierDestination.where(destination_id: @destination.id).second.carrier.name
+    - if CarrierDestination.where(destination_id: @destination.id).third == nil 
+    - else
+      - ac3 = CarrierDestination.where(destination_id: @destination.id).third.carrier.name
+
+    = content_tag(:td, class:"carriers") do
+      - concat link_to ac1, '', class:"carrier #{ac1}", value: "#{ac1}" 
+      - concat " "
+      - concat link_to ac2, '', class:"carrier #{ac2}", value: "#{ac2}"
+      - concat " "
+      - concat link_to ac3, '', class:"carrier #{ac3}", value: "#{ac3}"
+    %td= link_to "Edit", edit_destination_path
+    %td= link_to "Delete", destination_path, method: "delete"
+  %tr
+    %th Carrier
+    %th Sunday
+    %th Monday
+    %th Tuesday
+    %th Wednesday
+    %th Thursday
+    %th Friday
+    %th Saturday
+  %tr
+    - if CarrierDestination.where(destination_id: @destination.id).first == nil
+    - else 
+      %td= CarrierDestination.where(destination_id: @destination.id).first.carrier.name
+      - if Day.where(destination_id: @destination.id).first == nil
+        / # %td= link_to "Update this carrier's available delivery days", destination_carrier_path(@destination)
+      - else 
+        %td= Day.where(destination_id: @destination.id).first.sn
+        %td= Day.where(destination_id: @destination.id).first.m
+        %td= Day.where(destination_id: @destination.id).first.t
+        %td= Day.where(destination_id: @destination.id).first.w
+        %td= Day.where(destination_id: @destination.id).first.r
+        %td= Day.where(destination_id: @destination.id).first.f
+        %td= Day.where(destination_id: @destination.id).first.sa
+  %tr
+    - if CarrierDestination.where(destination_id: @destination.id).second == nil
+    - else 
+      %td= CarrierDestination.where(destination_id: @destination.id).second.carrier.name
+      - if Day.where(destination_id: @destination.id).second == nil
+      - else 
+        %td= Day.where(destination_id: @destination.id).second.sn
+        %td= Day.where(destination_id: @destination.id).second.m
+        %td= Day.where(destination_id: @destination.id).second.t
+        %td= Day.where(destination_id: @destination.id).second.w
+        %td= Day.where(destination_id: @destination.id).second.r
+        %td= Day.where(destination_id: @destination.id).second.f
+        %td= Day.where(destination_id: @destination.id).second.sa
+  %tr
+    - if CarrierDestination.where(destination_id: @destination.id).third == nil
+    - else 
+      %td= CarrierDestination.where(destination_id: @destination.id).third.carrier.name
+      - if Day.where(destination_id: @destination.id).third == nil
+      - else 
+        %td= Day.where(destination_id: @destination.id).third.sn
+        %td= Day.where(destination_id: @destination.id).third.m
+        %td= Day.where(destination_id: @destination.id).third.t
+        %td= Day.where(destination_id: @destination.id).third.w
+        %td= Day.where(destination_id: @destination.id).third.r
+        %td= Day.where(destination_id: @destination.id).third.f
+        %td= Day.where(destination_id: @destination.id).third.sa
+  %tr 
+    %th Holiday Name
+    %th Date
+  - @holidays.each do |h|
+    %tr
+      %td= h.holiday.name
+      %td= h.holiday.date
+= link_to "Add Approved Carrier", new_destination_carrier_destination_path(@destination.id)
+%br
+= link_to "Add Approved Delivery Days to a Carrier", new_destination_day_path(@destination)
+%br
+= link_to "Add a New Holiday", new_destination_destination_holiday_path(@destination)
+%br
+= link_to "Edit This Location's Holidays", '#'
+%br
+= link_to "View All Destinations", destinations_path

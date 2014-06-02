@@ -1,0 +1,15 @@
+%h3 Add a new Shipping Origin
+= form_for @origin do |o|
+  = o.label :name, "Location Name"
+  = o.text_field :name
+  = o.label :address
+  = o.text_field :address
+  = o.label :city
+  = o.text_field :city
+  = o.label :state
+  = o.text_field :state
+  = o.label :zip
+  = o.text_field :zip
+  = o.submit
+
+= link_to "View All Origins", origins_path

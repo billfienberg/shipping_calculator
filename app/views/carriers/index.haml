@@ -7,3 +7,6 @@
     %tr
       %td= c.id
       %td= c.name
+      %td= link_to "Edit", edit_carrier_path(c.id)
+      %td= link_to "Delete", '#'
+= link_to "Add a New Carrier", new_carrier_path

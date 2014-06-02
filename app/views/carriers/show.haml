@@ -6,3 +6,6 @@
   %tr
     %td= @carrier.id
     %td= @carrier.name
+    %td= link_to "Edit", edit_carrier_path(@carrier.id)
+    %td= link_to "Delete", '#'
+= link_to "View All Carriers", carriers_path 

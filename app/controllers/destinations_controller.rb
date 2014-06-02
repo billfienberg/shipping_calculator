@@ -17,11 +17,34 @@ def index
   end
 
   def show
-    @destinations = Destination.find(params[:id])
+    @destination = Destination.find(params[:id])
+    @holidays = DestinationHoliday.where(destination_id: @destination.id)
+  end
+
+  def edit
+    @destination = Destination.find(params[:id])
+  end
+
+  def update
+    @destination = Destination.find(params[:id])
+    @destination.update(destination_params)
+    respond_to do |format|
+      format.html { redirect_to :destination }
+      format.js { render :layout => false }
+    end
   end
 
   def search
     
+  end
+
+  def destroy
+    @destination = Destination.find(params[:id])
+    @destination.destroy
+    respond_to do |format|
+      format.html { redirect_to destinations_path }
+      format.js { render :layout => false }
+    end
   end
 
 

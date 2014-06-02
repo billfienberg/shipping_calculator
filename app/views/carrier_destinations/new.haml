@@ -1,7 +1,23 @@
 %h1 Add a New Carrier Destination
-= form_for @carrier_destinations do |c|
-  = c.label :carrier_id
-  = c.text_field :carrier_id
-  = c.label :destination_id
-  = c.text_field :destination_id
-  = c.submit
+%table
+  %tr
+    %td Location ID
+    %td Name
+    %td Address
+    %td City
+    %td State
+    %td Zip
+    %td Carrier ID
+    %td Submit
+  %tr
+    %td= @destination.id
+    %td= @destination.name
+    %td= @destination.address
+    %td= @destination.city
+    %td= @destination.state
+    %td= @destination.zip
+    = form_for @carrier_destinations do |c|
+      %td= c.text_field :carrier_id
+      %td= c.hidden_field :destination_id
+      %td= c.submit value="Add Approved Carrier"
+

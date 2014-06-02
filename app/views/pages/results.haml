@@ -100,7 +100,7 @@
 		%th Date
 	- if @holidays.length < 1
 		%tr
-			%td{colspan:2}= link_to "Add a Holiday for this Location" 
+			%td{colspan:2}= link_to "Add a Holiday for this Location", new_destination_destination_holiday_path(@destination_id)
 	- else 
 		- @holidays.each do |h|
 			%tr

@@ -7,7 +7,7 @@
     %td City
     %td State
     %td Zip
-    %td Carrier ID
+    %td Carrier
     %td Submit
   %tr
     %td= @destination.id
@@ -17,7 +17,10 @@
     %td= @destination.state
     %td= @destination.zip
     = form_for @carrier_destinations do |c|
-      %td= c.text_field :carrier_id
+      - carrier_options = []
+      - @carriers.each do |c|
+        - carrier_options.push("<option value=#{c.id} class='carrier'>#{c.name}</option>".html_safe)
+      %td= select_tag :carrier, options_for_select(carrier_options), {class: "carriers"}
       %td= c.hidden_field :destination_id
       %td= c.submit value="Add Approved Carrier"
 

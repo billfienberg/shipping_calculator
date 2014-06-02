@@ -5,6 +5,9 @@ def index
   end
 
   def new
+    @carriers = Carrier.all
+    @origins = Origin.all
+    @destinations = Destination.all
     @transit_time = TransitTime.new
     @destination = Destination.find(params[:destination_id])
   end
@@ -20,6 +23,7 @@ def index
 
   def show
     @transit_time = TransitTime.find(params[:id])
+    
   end
 
 

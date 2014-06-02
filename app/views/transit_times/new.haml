@@ -1,11 +1,26 @@
 %h3 Add a New Transit Time
-= form_for @transit_time do |tt|
-  = tt.label :carrier_id
-  = tt.text_field :carrier_id
-  = tt.label :origin_id
-  = tt.text_field :origin_id
-  = tt.label :destination_id
-  = tt.text_field :destination_id, placeholder:"#{@destination.id}"
-  = tt.label :number_of_days
-  = tt.text_field :number_of_days
-  = tt.submit
+%table
+  %tr
+    %th Carrier
+    %th Origin
+    %th Destination
+    %th Number of Days
+  %tr
+    = form_for @transit_time do |tt|
+      - carrier_options = []
+      - @carriers.each do |c|
+        - carrier_options.push("<option value=#{c.id} class='carrier'>#{c.name}</option>".html_safe)
+      %td= select_tag :carrier, options_for_select(carrier_options), {class: "carriers"}
+      = tt.text_field :carrier_id, class:"carrier_input"
+      - origin_options = []
+      - @origins.each do |o|
+        - origin_options.push("<option value=#{o.id} class='origin'>#{o.name}: #{o.address} #{o.city} #{o.state} #{o.zip}</option>".html_safe)
+      %td= select_tag :origin, options_for_select(origin_options), {class: "origins"}
+      = tt.text_field :origin_id, class:"origin_input"
+      - destination_options = []
+      - @destinations.each do |d|
+        - destination_options.push("<option value=#{d.id} class='origin'>#{d.name}: #{d.address} #{d.city} #{d.state} #{d.zip}</option>".html_safe)
+      %td= select_tag :destination, options_for_select(destination_options), {class: "destinations"}
+      = tt.text_field :destination_id, class:"destination_input"
+      %td= tt.text_field :number_of_days, placeholder: 3, required:true
+      %td= tt.submit

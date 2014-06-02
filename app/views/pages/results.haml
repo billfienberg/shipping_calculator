@@ -93,4 +93,8 @@
 							- @recommended.push(Carrier.find(c.carrier_id).name)
 						- else 
 							No
-%p= @recommended
+%h4 Recomended Carriers							
+%ul
+	- @recommended.each do |r|
+		%li= r
+	

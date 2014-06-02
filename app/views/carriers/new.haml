@@ -1,5 +1,6 @@
 %h1 Add a New Carrier
-= form_for @carriers do |c|
+= form_for @carrier do |c|
   = c.label :name
   = c.text_field :name
   = c.submit
+= link_to "View All Carriers", carriers_path

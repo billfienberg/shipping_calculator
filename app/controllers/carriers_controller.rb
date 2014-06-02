@@ -4,7 +4,7 @@ class CarriersController < ApplicationController
   end
 
   def new
-    @carriers = Carrier.new
+    @carrier = Carrier.new
   end
 
   def create

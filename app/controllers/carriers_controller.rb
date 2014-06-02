@@ -20,6 +20,18 @@ class CarriersController < ApplicationController
     @carrier = Carrier.find(params[:id])
   end
 
+  def edit
+    @carrier = Carrier.find(params[:id])
+  end
+
+  def update
+    @carrier = Carrier.find(params[:id])
+    @carrier.update(carrier_params)
+    respond_to do |format|
+      format.html { redirect_to :carrier }
+      format.js { render :layout => false }
+    end
+  end
 
 private
   def carrier_params

@@ -1,2 +1,11 @@
-<h1>Holidays#show</h1>
-<p>Find me in app/views/holidays/show.html.erb</p>
+%h3 Holiday
+%table
+  %tr
+    %th Name
+    %th Date
+  %tr
+    %td= @holiday.name
+    %td= @holiday.date
+    %td= link_to "Edit", edit_holiday_path(@holiday.id)
+    %td= link_to "Delete", '#'
+= link_to "View All Holidays", holidays_path

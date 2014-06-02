@@ -1,0 +1,9 @@
+%h3 Holidays
+%table 
+  %tr
+    %th Name
+    %th Date
+  - @holidays.each do |h|
+    %tr
+      %td= h.name
+      %td= h.date

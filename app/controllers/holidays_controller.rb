@@ -4,20 +4,20 @@ def index
   end
 
   def new
-    @holidays = Holiday.new
+    @holiday = Holiday.new
   end
 
   def create
-    @holidays = Holiday.new(holiday_params)
-    if @holidays.save
-      redirect_to @holidays
+    @holiday = Holiday.new(holiday_params)
+    if @holiday.save
+      redirect_to @holiday
     else
       render "new"
     end
   end
 
   def show
-    @holidays = Holiday.find(params[:id])
+    @holiday = Holiday.find(params[:id])
   end
 
 

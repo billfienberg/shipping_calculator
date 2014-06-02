@@ -1,0 +1,15 @@
+%h3 Transit Times
+%table
+  %tr
+    %th ID
+    %th Carrier ID
+    %th Origin ID
+    %th Destination ID
+    %th Transit Time
+  - @transit_times.each do |tt|
+    %tr
+      %td= tt.id
+      %td= tt.carrier_id
+      %td= tt.origin_id
+      %td= tt.destination_id
+      %td= tt.number_of_days

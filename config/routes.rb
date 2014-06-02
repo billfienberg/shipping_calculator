@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'pages/index', to: 'pages#index'
   resources :destinations do 
     resources :carrier_destinations
+    resources :holidays
   end
   resources :carrier_destinations, :carriers, :origins, :days, :destination_holidays, :holidays, :transit_times
   # The priority is based upon order of creation: first created -> highest priority.

@@ -43,7 +43,7 @@
 		%th Friday
 		%th Saturday
 		%th Can Deliver on EDD?
-
+	- @recommended = []
 	- @carriers.each do |c|
 		%tr
 			%td= Carrier.find(c.carrier_id).name
@@ -58,40 +58,39 @@
 				- @second_earliest = (@pickup_date.to_date + @transit_time.days + 1.days)
 				- @dotw = @earliest.strftime('%A')
 				%td= @earliest.strftime('%A %B %d, %Y')
-				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sn
-				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.m
-				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.t
-				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.w
-				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.r
-				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.f
-				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sa
+				- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first == nil
+				- else
+					%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sn
+					%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.m
+					%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.t
+					%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.w
+					%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.r
+					%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.f
+					%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sa
 				%td
-					- @recommended = []
-					- if @dotw == "Sunday"
-						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sn != "false"
+					- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first == nil
+					- else
+						- if @dotw == "Sunday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sn == true
 							Yes
 							- @recommended.push(Carrier.find(c.carrier_id).name)
-					- if @dotw == "Monday"
-						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.m != "false"
+						- elsif @dotw == "Monday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.m == true
 							Yes
 							- @recommended.push(Carrier.find(c.carrier_id).name)
-					- if @dotw == "Tuesday"
-						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.t != "false"
+						- elsif @dotw == "Tuesday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.t == true
 							Yes
 							- @recommended.push(Carrier.find(c.carrier_id).name)
-					- if @dotw == "Wednesday"
-						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.w != "false"
+						- elsif @dotw == "Wednesday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.w == true
 							Yes
 							- @recommended.push(Carrier.find(c.carrier_id).name)
-					- if @dotw == "Thursday"
-						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.r != "false"
+						- elsif @dotw == "Thursday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.r == true
 							Yes
 							- @recommended.push(Carrier.find(c.carrier_id).name)
-					- if @dotw == "Friday"
-						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.f != "false"
+						- elsif @dotw == "Friday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.f == true
 							Yes
 							- @recommended.push(Carrier.find(c.carrier_id).name)
-					- if @dotw == "Saturday"
-						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sa != "false"
+						- elsif @dotw == "Saturday" && Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sa == true
 							Yes
 							- @recommended.push(Carrier.find(c.carrier_id).name)
+						- else 
+							No
+%p= @recommended

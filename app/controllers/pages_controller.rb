@@ -12,7 +12,7 @@ class PagesController < ApplicationController
       @origin = Origin.find(params[:origin])
       @destination = Destination.find(params[:destination])
       @carriers = CarrierDestination.where(destination_id: @destination.id)
-      @pickup_date = params[:pickup_date]
+      @pickup_date = Date.parse(params[:pickup_date]).strftime('%A %B %d, %Y') 
     else 
       redirect_to pages_calculate_path
     end

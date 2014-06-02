@@ -28,40 +28,70 @@
 		%td= @destination.city
 		%td= @destination.state
 		%td= @destination.zip
+%br
+%table
 	%tr
 		%th Carrier
 		%th Pickup Date
 		%th Transit Time
-		%th Earliest Possible Delivery Day
-		/ %th Sunday
-		/ %th Monday
-		/ %th Tuesday
-		/ %th Wednesday
-		/ %th Thursday
-		/ %th Friday
-		/ %th Saturday
+		%th Expected Delivery Day (EDD)
+		%th Sunday
+		%th Monday
+		%th Tuesday
+		%th Wednesday
+		%th Thursday
+		%th Friday
+		%th Saturday
+		%th Can Deliver on EDD?
 
 	- @carriers.each do |c|
 		%tr
 			%td= Carrier.find(c.carrier_id).name
-			- @pickup_day = Date.strptime(@pickup_date, '%m/%d/%Y')
-			%td= @pickup_day.strftime('%A %B %d, %Y')
+			%td= @pickup_date
 			- if TransitTime.where(origin_id: @origin.id, destination_id: @destination.id, carrier_id: c.carrier_id).first == nil
 				%td= "N/A"
-			- else
-				- @transit_time = TransitTime.where(origin_id: @origin.id, destination_id: @destination.id, carrier_id: c.carrier_id).first.number_of_days
-				%td= @transit_time
-			- if @transit_time.is_a? Integer
-				- @earliest = (DateTime.parse(@pickup_date) + @transit_time)
-				%td= @earliest
-			- else
 				%td= "N/A"
-				
-			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sn
-			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.m
-			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.t
-			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.w
-			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.r
-			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.f
-			/ %td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sa
-	
+			- else
+				- @transit_time = TransitTime.where(origin_id: @origin.id, destination_id: @destination.id, carrier_id: c.carrier_id).first.number_of_days.to_i
+				%td= @transit_time
+				- @earliest = (@pickup_date.to_date + @transit_time.days)
+				- @second_earliest = (@pickup_date.to_date + @transit_time.days + 1.days)
+				- @dotw = @earliest.strftime('%A')
+				%td= @earliest.strftime('%A %B %d, %Y')
+				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sn
+				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.m
+				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.t
+				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.w
+				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.r
+				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.f
+				%td= Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sa
+				%td
+					- @recommended = []
+					- if @dotw == "Sunday"
+						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sn != "false"
+							Yes
+							- @recommended.push(Carrier.find(c.carrier_id).name)
+					- if @dotw == "Monday"
+						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.m != "false"
+							Yes
+							- @recommended.push(Carrier.find(c.carrier_id).name)
+					- if @dotw == "Tuesday"
+						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.t != "false"
+							Yes
+							- @recommended.push(Carrier.find(c.carrier_id).name)
+					- if @dotw == "Wednesday"
+						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.w != "false"
+							Yes
+							- @recommended.push(Carrier.find(c.carrier_id).name)
+					- if @dotw == "Thursday"
+						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.r != "false"
+							Yes
+							- @recommended.push(Carrier.find(c.carrier_id).name)
+					- if @dotw == "Friday"
+						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.f != "false"
+							Yes
+							- @recommended.push(Carrier.find(c.carrier_id).name)
+					- if @dotw == "Saturday"
+						- if Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).first.sa != "false"
+							Yes
+							- @recommended.push(Carrier.find(c.carrier_id).name)

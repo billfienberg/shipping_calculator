@@ -14,6 +14,6 @@
   = select_tag :destination, options_for_select(destination_options), {class: "destinations"}
   %br
   = label_tag :pickup_date
-  = text_field_tag :pickup_date, '', class:"pickup_date", required:true
+  = text_field_tag :pickup_date, '', class:"pickup_date", required:true, placeholder:"dd/mm/yyyy"
   %br
   = submit_tag "Find Recommended Carrier(s)"

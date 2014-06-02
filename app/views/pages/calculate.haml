@@ -1,0 +1,12 @@
+= form_tag destinations_path, method: :get do
+  = label_tag :origin
+  - origin_options = []
+  - @origins.each do |o|
+    - origin_options.push("#{o.name}: #{o.address} #{o.city} #{o.state} #{o.zip}")
+
+  = select_tag :origin, options_for_select(origin_options)
+  = label_tag :destination
+  = select_tag :destination
+  = label_tag :pickup_date
+  = text_field_tag :pickup_date
+  = submit_tag "Find Recommended Carrier(s)"

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#index'
   get 'pages/index', to: 'pages#index'
+  get 'pages/calculate', to: 'pages#calculate'
   resources :destinations do 
     resources :carrier_destinations
     resources :destination_holidays

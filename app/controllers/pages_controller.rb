@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
   def index
-    
   end
 
-  def show
+  def calculate
+    @origins = Origin.all
   end
 end

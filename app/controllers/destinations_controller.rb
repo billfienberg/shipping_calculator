@@ -1,6 +1,10 @@
 class DestinationsController < ApplicationController
 def index
-    @destinations = Destination.all
+    if params[:search]
+      @origins = Origin.all
+    else 
+      @destinations = Destination.all
+    end
   end
 
   def new

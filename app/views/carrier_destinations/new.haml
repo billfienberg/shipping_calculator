@@ -7,7 +7,8 @@
     %td City
     %td State
     %td Zip
-    %td New Carrier
+    %td Carrier ID
+    %td Submit
   %tr
     %td= @destination.id
     %td= @destination.name
@@ -17,5 +18,6 @@
     %td= @destination.zip
     = form_for @carrier_destinations do |c|
       %td= c.text_field :carrier_id
+      %td= c.hidden_field :destination_id
       %td= c.submit value="Add Approved Carrier"
 

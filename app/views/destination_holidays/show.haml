@@ -1,8 +1,16 @@
 %h3 Holiday Destination
 %table
   %tr
-    %th Destination ID
-    %th Holiday ID
+    %th Destination Name
+    %th Address
+    %th City
+    %th State
+    %th Zip
+    %th Holiday
   %tr
-    %td= @destination_holiday.destination_id
-    %td= @destination_holiday.holiday_id
+    %td= Destination.find(@destination_holiday.destination_id).name
+    %td= Destination.find(@destination_holiday.destination_id).address
+    %td= Destination.find(@destination_holiday.destination_id).city
+    %td= Destination.find(@destination_holiday.destination_id).state
+    %td= Destination.find(@destination_holiday.destination_id).zip
+    %td= Holiday.find(@destination_holiday.holiday_id).name

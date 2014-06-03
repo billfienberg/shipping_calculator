@@ -9,5 +9,5 @@
       %td= h.date
       %td= link_to "View", holiday_path(h.id)
       %td= link_to "Edit", edit_holiday_path(h.id)
-      %td= link_to "Delete", '#'
+      %td= link_to "Delete", holiday_path(h.id), method: "delete", data: { confirm: "Are you sure?" }
 = link_to "Add a New Holiday", new_holiday_path

@@ -33,6 +33,15 @@ def index
     end
   end
 
+  def destroy
+    @holiday = Holiday.find(params[:id])
+    @holiday.destroy
+    respond_to do |format|
+      format.html { redirect_to holidays_path }
+      format.js { render :layout => false }
+    end
+  end
+
 private
   def holiday_params
     params.require(:holiday).permit(:name, :date)

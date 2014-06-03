@@ -7,5 +7,5 @@
     %td= @holiday.name
     %td= @holiday.date
     %td= link_to "Edit", edit_holiday_path(@holiday.id)
-    %td= link_to "Delete", '#'
+    %td= link_to "Delete", holiday_path(@holiday.id), method: "delete", data: { confirm: "Are you sure?" }
 = link_to "View All Holidays", holidays_path

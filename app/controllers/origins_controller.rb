@@ -33,6 +33,15 @@ class OriginsController < ApplicationController
     end
   end
 
+  def destroy
+    @origin = Origin.find(params[:id])
+    @origin.destroy
+    respond_to do |format|
+      format.html { redirect_to origins_path }
+      format.js { render :layout => false }
+    end
+  end
+
 private
   def origin_params
     params.require(:origin).permit(:name, :address, :city, :state, :zip)

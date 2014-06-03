@@ -12,7 +12,7 @@
     %th Saturday
   %tr
     %td= @day.destination_id
-    %td= @day.carrier_id
+    %td= Carrier.find(@day.carrier_id).name
     %td= @day.sn
     %td= @day.m
     %td= @day.t

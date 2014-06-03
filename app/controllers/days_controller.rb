@@ -23,9 +23,31 @@ def index
     @day = Day.find(params[:id])
     @destination = Destination.find(params[:destination_id])
     @carrier = Carrier.find(params[:carrier_id])
-
   end
 
+  def edit
+    @day = Day.find(params[:id])
+    @destination = Destination.find(params[:destination_id])
+    @carrier = Carrier.find(params[:carrier_id])
+  end
+
+  def update
+    @day = Day.find(params[:id])
+    @day.update(day_params)
+    respond_to do |format|
+      format.html { redirect_to destination_path(@day.destination_id) }
+      format.js { render :layout => false }
+    end
+  end
+
+  def destroy
+    @day = Day.find(params[:id])
+    @day.destroy
+    respond_to do |format|
+      format.html { redirect_to destination_path(@day.destination_id) }
+      format.js { render :layout => false }
+    end
+  end
 
 private
   def day_params

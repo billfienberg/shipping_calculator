@@ -8,5 +8,5 @@
       %td= c.id
       %td= c.name
       %td= link_to "Edit", edit_carrier_path(c.id)
-      %td= link_to "Delete", '#'
+      %td= link_to "Delete", carrier_path(c.id), method: "delete", data: { confirm: "Are you sure?" }
 = link_to "Add a New Carrier", new_carrier_path

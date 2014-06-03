@@ -3,4 +3,5 @@
   = c.label :name
   = c.text_field :name
   = c.submit
+= link_to "Delete This Carrier", carrier_path(@carrier.id), method: "delete", data: { confirm: "Are you sure?" }
 = link_to "View All Carriers", carriers_path

@@ -33,6 +33,17 @@ class CarriersController < ApplicationController
     end
   end
 
+  def destroy
+    @carrier = Carrier.find(params[:id])
+    if @carrier.destroy
+      redirect_to carriers_path
+    end
+    respond_to do |format|
+      format.html {  }
+      format.js { render :layout => false }
+    end
+  end
+
 private
   def carrier_params
     params.require(:carrier).permit(:name)

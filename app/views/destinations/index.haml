@@ -19,6 +19,7 @@
       - carriers = []
       - CarrierDestination.where(destination_id:d.id).each do |cd|
         - carriers.push(Carrier.find(cd.carrier_id).name)
+      - carriers.sort_by!{ |c| c.downcase }
       %td= carriers.join(" ")
 
       / - if CarrierDestination.where(destination_id: d.id).first == nil 

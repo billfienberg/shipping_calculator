@@ -42,5 +42,5 @@
       - else
         %td= "#{tt.number_of_days} days"
       %td= link_to "Edit", edit_transit_time_path(tt.id)
-      %td= link_to "Delete", '#'
+      %td= link_to "Delete", transit_time_path(tt.id), method: "delete", data: { confirm: "Are you sure?" }
 = link_to "Add a New Transit Time", new_transit_time_path

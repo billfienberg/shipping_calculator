@@ -36,6 +36,15 @@ def index
     end
   end
 
+  def destroy
+    @transit_time = TransitTime.find(params[:id])
+    @transit_time.destroy
+    respond_to do |format|
+      format.html { redirect_to transit_times_path }
+      format.js { render :layout => false }
+    end
+  end
+
 
 private
   def transit_time_params

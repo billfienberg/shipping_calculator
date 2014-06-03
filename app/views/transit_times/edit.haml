@@ -39,3 +39,6 @@
     = form_for @transit_time do |tt|
       %td= tt.text_field :number_of_days, placeholder:3
       %td= tt.submit "Update Transit Time"
+= link_to "Delete This Transit Time", transit_time_path(@transit_time.id), method: "delete", data: { confirm: "Are you sure?" }
+%br
+= link_to "View All Transit Times", transit_times_path

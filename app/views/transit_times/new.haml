@@ -27,6 +27,9 @@
 
 :javascript
   $(document).ready(function(){
+
+    $(".carriers option:even").remove();
+
     console.log("This is coming form transit_times.js")
     $(".carrier_input").val($(".carriers").val())
     $(".origin_input").val($(".origins").val())

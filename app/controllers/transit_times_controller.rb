@@ -1,4 +1,3 @@
-
 class TransitTimesController < ApplicationController
 def index
     @transit_times = TransitTime.all
@@ -9,7 +8,6 @@ def index
     @origins = Origin.all
     @destinations = Destination.all
     @transit_time = TransitTime.new
-    @destination = Destination.find(params[:destination_id])
   end
 
   def create

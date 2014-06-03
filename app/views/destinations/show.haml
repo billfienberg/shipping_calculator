@@ -3,6 +3,7 @@
   %tr
     %th Location ID
     %th Name
+    %th Store #
     %th Address
     %th City
     %th State
@@ -11,21 +12,15 @@
   %tr
     %td= @destination.id
     %td= @destination.name
+    %td 1234
     %td= @destination.address
     %td= @destination.city
     %td= @destination.state
     %td= @destination.zip
-    - if CarrierDestination.where(destination_id: @destination.id).first == nil 
-    - else
-      - ac1 = CarrierDestination.where(destination_id: @destination.id).first.carrier.name
-    - if CarrierDestination.where(destination_id: @destination.id).second == nil 
-    - else
-      - ac2 = CarrierDestination.where(destination_id: @destination.id).second.carrier.name
-    - if CarrierDestination.where(destination_id: @destination.id).third == nil 
-    - else
-      - ac3 = CarrierDestination.where(destination_id: @destination.id).third.carrier.name
-
-    %td= "#{ac1} #{ac2} #{ac3}"
+    - @carriers = []
+    - @carrier_destinations.each do |cd|
+      - @carriers.push(Carrier.find(cd.carrier_id).name)
+    %td= @carriers.join " "
     %td= link_to "Edit", edit_destination_path
     %td= link_to "Delete", destination_path, method: "delete"
   %tr
@@ -48,6 +43,8 @@
         %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.r
         %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.f
         %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.sa
+        %td= link_to "Edit", '#'
+        %td= link_to "Delete", '#'
       - else
         %td{colspan:7}= link_to "Add Approved Delivery Days to a Carrier", new_destination_carrier_day_path(@destination, cd.carrier_id)
   %tr

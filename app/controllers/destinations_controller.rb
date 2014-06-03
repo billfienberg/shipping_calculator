@@ -1,7 +1,7 @@
 class DestinationsController < ApplicationController
   def index
     @destinations = Destination.all
-    
+    @carrier_destinations = CarrierDestination.where(destination_id:params[:destination_id])
   end
 
   def new
@@ -29,7 +29,7 @@ class DestinationsController < ApplicationController
 
   def update
     @destination = Destination.find(params[:id])
-    
+
     @destination.update(destination_params)
     respond_to do |format|
       format.html { redirect_to :destination }

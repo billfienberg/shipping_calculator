@@ -26,7 +26,7 @@ def index
 
   def update
     @holiday = Holiday.find(params[:id])
-    @holiday.update(destination_params)
+    @holiday.update(holiday_params)
     respond_to do |format|
       format.html { redirect_to :holiday }
       format.js { render :layout => false }

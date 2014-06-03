@@ -5,6 +5,8 @@ def index
 
   def new
     @destination_holiday = DestinationHoliday.new
+    @destination = Destination.find(params[:destination_id])
+    @holidays = Holiday.all
   end
 
   def create

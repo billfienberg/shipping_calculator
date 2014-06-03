@@ -1,6 +1,7 @@
 class DestinationsController < ApplicationController
   def index
     @destinations = Destination.all
+    
   end
 
   def new
@@ -19,6 +20,7 @@ class DestinationsController < ApplicationController
   def show
     @destination = Destination.find(params[:id])
     @holidays = DestinationHoliday.where(destination_id: @destination.id)
+    @carrier_destinations = CarrierDestination.where(destination_id:@destination.id)
   end
 
   def edit

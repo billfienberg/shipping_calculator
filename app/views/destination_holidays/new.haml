@@ -1,6 +1,20 @@
 = form_for @destination_holiday do |dh|
-  = dh.label :destination_id
-  = dh.text_field :destination_id
-  = dh.label :holiday_id
-  = dh.text_field :holiday_id
+  = dh.hidden_field :destination_id, value:"#{@destination.id}"
+  = dh.hidden_field :holiday_id
+  - holiday_options = []
+  - @holidays.each do |h|
+    - holiday_options.push("<option value=#{h.id} class='holiday'>#{h.name}, #{h.date}</option>".html_safe)
+  = select_tag :holidays, options_for_select(holiday_options), {class: "holidays"}
   = dh.submit
+
+:javascript
+  $(document).ready(function(){
+
+    $(".holidays option:even").remove();
+
+    $("#destination_holiday_holiday_id").val($("#holidays option:selected").val());
+    $("#holidays").on("change", function(){
+      $("#destination_holiday_holiday_id").val($("#holidays option:selected").val());
+    });
+
+  });

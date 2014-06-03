@@ -1,4 +1,4 @@
-%h3 Destinations
+%h3 Destination
 %table
   %tr
     %th Location ID
@@ -37,46 +37,20 @@
     %th Thursday
     %th Friday
     %th Saturday
-  %tr
-    - if CarrierDestination.where(destination_id: @destination.id).first == nil
-    - else 
-      %td= CarrierDestination.where(destination_id: @destination.id).first.carrier.name
-      - if Day.where(destination_id: @destination.id).first == nil
-        / # %td= link_to "Update this carrier's available delivery days", destination_carrier_path(@destination)
-      - else 
-        %td= Day.where(destination_id: @destination.id).first.sn
-        %td= Day.where(destination_id: @destination.id).first.m
-        %td= Day.where(destination_id: @destination.id).first.t
-        %td= Day.where(destination_id: @destination.id).first.w
-        %td= Day.where(destination_id: @destination.id).first.r
-        %td= Day.where(destination_id: @destination.id).first.f
-        %td= Day.where(destination_id: @destination.id).first.sa
-  %tr
-    - if CarrierDestination.where(destination_id: @destination.id).second == nil
-    - else 
-      %td= CarrierDestination.where(destination_id: @destination.id).second.carrier.name
-      - if Day.where(destination_id: @destination.id).second == nil
-      - else 
-        %td= Day.where(destination_id: @destination.id).second.sn
-        %td= Day.where(destination_id: @destination.id).second.m
-        %td= Day.where(destination_id: @destination.id).second.t
-        %td= Day.where(destination_id: @destination.id).second.w
-        %td= Day.where(destination_id: @destination.id).second.r
-        %td= Day.where(destination_id: @destination.id).second.f
-        %td= Day.where(destination_id: @destination.id).second.sa
-  %tr
-    - if CarrierDestination.where(destination_id: @destination.id).third == nil
-    - else 
-      %td= CarrierDestination.where(destination_id: @destination.id).third.carrier.name
-      - if Day.where(destination_id: @destination.id).third == nil
-      - else 
-        %td= Day.where(destination_id: @destination.id).third.sn
-        %td= Day.where(destination_id: @destination.id).third.m
-        %td= Day.where(destination_id: @destination.id).third.t
-        %td= Day.where(destination_id: @destination.id).third.w
-        %td= Day.where(destination_id: @destination.id).third.r
-        %td= Day.where(destination_id: @destination.id).third.f
-        %td= Day.where(destination_id: @destination.id).third.sa
+  - @carrier_destinations.each do |cd|
+    %tr
+      %td= Carrier.find(cd.carrier_id).name
+      - if Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.sn
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.m
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.t
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.w
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.r
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.f
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.sa
+      - else
+        %td{colspan:7}= link_to "Add Approved Delivery Days to a Carrier", new_destination_day_path(@destination)
+  
   %tr 
     %th Holiday Name
     %th Date
@@ -84,11 +58,12 @@
     %tr
       %td= h.holiday.name
       %td= h.holiday.date
+      
 = link_to "Add Approved Carrier", new_destination_carrier_destination_path(@destination.id)
 %br
 = link_to "Add Approved Delivery Days to a Carrier", new_destination_day_path(@destination)
 %br
-= link_to "Add a New Holiday", new_destination_destination_holiday_path(@destination)
+= link_to "Add a Holiday to this Destination", new_destination_destination_holiday_path(@destination)
 %br
 = link_to "Edit This Location's Holidays", '#'
 %br

@@ -49,6 +49,8 @@
         %td{colspan:7}= link_to "Add Approved Delivery Days to this Carrier", new_destination_carrier_day_path(@destination, cd.carrier_id)
   %tr
     %td= link_to "Add Approved Carrier", new_destination_carrier_destination_path(@destination.id) 
+  %tr
+    %td= link_to "Edit Approved Carriers", edit_destination_carrier_destination_path(@destination.id, 1)
 
 %br
 %table

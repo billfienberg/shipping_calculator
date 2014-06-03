@@ -29,6 +29,7 @@ class DestinationsController < ApplicationController
 
   def update
     @destination = Destination.find(params[:id])
+    
     @destination.update(destination_params)
     respond_to do |format|
       format.html { redirect_to :destination }

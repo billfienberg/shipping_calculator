@@ -49,7 +49,7 @@
         %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.f
         %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.sa
       - else
-        %td{colspan:7}= link_to "Add Approved Delivery Days to a Carrier", new_destination_day_path(@destination)
+        %td{colspan:7}= link_to "Add Approved Delivery Days to a Carrier", new_destination_carrier_day_path(@destination, cd.carrier_id)
 
 %br
 %table

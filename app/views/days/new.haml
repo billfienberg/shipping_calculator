@@ -16,11 +16,8 @@
   %tr
     = form_for @day do |d|
       = d.hidden_field :destination_id, value:"#{@destination.id}"
-      = d.hidden_field :carrier_id, class:"carrier_input"
-      - carrier_options = []
-      - @carriers.each do |c|
-        - carrier_options.push("<option value=#{c.id} class='carrier'>#{c.name}</option>".html_safe)
-      %td= select_tag :carrier, options_for_select(carrier_options), {class: "carriers", rowspan:2}
+      = d.hidden_field :carrier_id, value:"#{@carrier.id}"
+      %td= "#{@carrier.name}"
 
       / Sunday
       %td= d.radio_button :sn, true
@@ -43,10 +40,5 @@
   $(document).ready(function(){
     
     $(".carriers option:even").remove();
-
-    $("#day_carrier_id").val($("select option:selected").attr("value"));
-    $(".carriers").on("change", function(){
-      $("#day_carrier_id").val($("select option:selected").attr("value"));
-    });
 
   });

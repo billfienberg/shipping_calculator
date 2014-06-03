@@ -13,7 +13,7 @@ def index
   def create
     @day = Day.new(day_params)
     if @day.save
-      redirect_to days_path
+      redirect_to destination_path(@day.destination_id)
     else
       render "new"
     end

@@ -10,20 +10,9 @@
     %th{colspan:2} Friday
     %th{colspan:2} Saturday
   %tr
-    %th True
-    %th False
-    %th True
-    %th False
-    %th True
-    %th False
-    %th True
-    %th False
-    %th True
-    %th False
-    %th True
-    %th False
-    %th True
-    %th False
+    - 7.times do
+      %th True
+      %th False
   %tr
     = form_for @day do |d|
       = d.hidden_field :destination_id, value:"#{@destination.id}"

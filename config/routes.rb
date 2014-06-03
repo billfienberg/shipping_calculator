@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :carrier_destinations
     resources :destination_holidays
     resources :days
-    resources :carriers
+    resources :carriers do
+      resources :days
+    end
     resources :transit_times
   end
   resources :carrier_destinations, :carriers, :origins, :days, :destination_holidays, :holidays, :transit_times

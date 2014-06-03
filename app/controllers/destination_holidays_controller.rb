@@ -10,9 +10,9 @@ def index
   end
 
   def create
-    @destination_holidays = DestinationHoliday.new(destination_holiday_params)
-    if @destination_holidays.save
-      redirect_to @destination_holidays
+    @destination_holiday = DestinationHoliday.new(destination_holiday_params)
+    if @destination_holiday.save
+      redirect_to destination_path(@destination_holiday.destination_id)
     else
       render "new"
     end

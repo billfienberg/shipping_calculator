@@ -5,7 +5,8 @@ class CarrierDestinationsController < ApplicationController
 
   def new
     @destination = Destination.find(params[:destination_id])
-    @carrier_destinations = CarrierDestination.new
+    @destinations = Destination.all
+    @carrier_destination = CarrierDestination.new
     @carriers = Carrier.all
   end
 

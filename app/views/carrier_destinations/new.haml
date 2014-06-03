@@ -10,17 +10,35 @@
     %td Carrier
     %td Submit
   %tr
-    %td= @destination.id
+    %td.location_id{value:"#{@destination.id}"}= @destination.id
     %td= @destination.name
     %td= @destination.address
     %td= @destination.city
     %td= @destination.state
     %td= @destination.zip
-    = form_for @carrier_destinations do |c|
+    = form_for @carrier_destination do |c|
+      %td= c.text_field :carrier_id, class:"carrier_input"
+      %td= c.text_field :destination_id, class:"destination_input"
       - carrier_options = []
       - @carriers.each do |c|
         - carrier_options.push("<option value=#{c.id} class='carrier'>#{c.name}</option>".html_safe)
-      %td= select_tag :carrier, options_for_select(carrier_options), {class: "carriers"}
-      %td= c.hidden_field :destination_id
+      %td= select_tag :carriers, options_for_select(carrier_options), {class: "carriers"}
       %td= c.submit value="Add Approved Carrier"
 
+:javascript 
+  
+  $(document).ready(function(){
+
+    var location_id = $(".location_id").attr("value");
+    $( ".carriers option" ).filter( ":even" ).remove();
+
+    $(".destination_input").parent().hide();
+    $(".carrier_input").parent().hide();
+    $(".destination_input").val(location_id);
+
+    $(".carrier_input").val($("#carriers option:selected").val());
+    $("#carriers").on("change", function(){
+      $(".carrier_input").val($("#carriers option:selected").val());
+    });
+
+  });

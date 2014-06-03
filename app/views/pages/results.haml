@@ -44,6 +44,8 @@
 		%th Saturday
 		%th Can Deliver on EDD?
 	- @recommended = []
+	- if @carriers.length == 0
+		%td= link_to "Add an Approved Carrier for this Destination", new_destination_carrier_destination_path(@destination.id)
 	- @carriers.each do |c|
 		%tr
 			%td= Carrier.find(c.carrier_id).name
@@ -100,7 +102,7 @@
 		%th Date
 	- if @holidays.length < 1
 		%tr
-			%td{colspan:2}= link_to "Add a Holiday for this Location", new_destination_destination_holiday_path(@destination_id)
+			%td{colspan:2}= link_to "Add a Holiday for this Location", new_destination_destination_holiday_path(@destination.id)
 	- else 
 		- @holidays.each do |h|
 			%tr

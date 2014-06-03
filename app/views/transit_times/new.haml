@@ -24,3 +24,25 @@
       = tt.text_field :destination_id, class:"destination_input"
       %td= tt.text_field :number_of_days, placeholder: 3, required:true
       %td= tt.submit
+
+:javascript
+  $(document).ready(function(){
+    console.log("This is coming form transit_times.js")
+    $(".carrier_input").val($(".carriers").val())
+    $(".origin_input").val($(".origins").val())
+    $(".destination_input").val($(".destinations").val())
+    $(".carrier_input, .origin_input, .destination_input").hide();
+
+    $(".carriers").on("change", function(){
+      $(".carrier_input").val($(".carriers").val())
+    });
+
+    $(".origins").on("change", function(){
+      $(".origin_input").val($(".origins").val())
+    });
+
+    $(".destinations").on("change", function(){
+      $(".destination_input").val($(".destinations").val())
+    });
+
+  });

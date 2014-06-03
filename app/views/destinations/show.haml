@@ -50,15 +50,22 @@
         %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.sa
       - else
         %td{colspan:7}= link_to "Add Approved Delivery Days to a Carrier", new_destination_day_path(@destination)
-  
+
+%br
+%table
   %tr 
     %th Holiday Name
     %th Date
-  - @holidays.each do |h|
+  - if @holidays.length == 0
     %tr
-      %td= h.holiday.name
-      %td= h.holiday.date
-      
+      %td{colspan:2}= link_to "Add a Holiday to this Destination", new_destination_destination_holiday_path(@destination)
+  - else
+    - @holidays.each do |h|
+      %tr
+        %td= h.holiday.name
+        %td= h.holiday.date
+
+%br
 = link_to "Add Approved Carrier", new_destination_carrier_destination_path(@destination.id)
 %br
 = link_to "Add Approved Delivery Days to a Carrier", new_destination_day_path(@destination)

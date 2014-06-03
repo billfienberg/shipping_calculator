@@ -1,0 +1,31 @@
+%h3 Destination
+%table
+  %tr
+    %th Location ID
+    %th Name
+    %th Store #
+    %th Address
+    %th City
+    %th State
+    %th Zip
+  %tr
+    %td= @destination.id
+    %td= @destination.name
+    %td 1234
+    %td= @destination.address
+    %td= @destination.city
+    %td= @destination.state
+    %td= @destination.zip
+
+
+= form_for @destination_holiday do |dh|
+  = dh.text_field :destination_id, value:"#{@destination.id}"
+  = dh.text_field :holiday_id, value:"#{Holiday.find(@destination_holiday.destination_id).name}"
+  = dh.submit "Submit"
+
+:javascript
+  $(document).ready(function(){
+
+    $(".holidays option:even").remove();
+
+  });

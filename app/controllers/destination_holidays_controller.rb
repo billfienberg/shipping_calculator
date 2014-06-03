@@ -23,10 +23,30 @@ def index
   end
 
   def edit
-    @destination_holiday = DestinationHoliday.find(params[:destination_id])
+    @destination_holiday = DestinationHoliday.find(params[:id])
+    @destination = Destination.find(params[:destination_id])
+    @holidays = Holiday.all
   end
 
   def update
+    @destination_holiday = DestinationHoliday.find(params[:id])
+    if @destination_holiday.update(destination_holiday_params)
+      redirect_to destination_path(@destination_holiday.destination_id)
+    else
+      render "edit"
+    end
+    respond_to do |format|
+      format.html {  }
+      format.js { render :layout => false }
+    end
+  end
+
+  def destroy
+    @destination_holiday = DestinationHoliday.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to destinations_path }
+      format.js { render :layout => false }
+    end
   end
 
 private

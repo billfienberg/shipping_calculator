@@ -1,29 +1,63 @@
 %h1 Add a New Day
-= form_for @day do |d|
-  = d.label :destination_id
-  = d.text_field :destination_id
-  = d.label :carrier_id
-  = d.text_field :carrier_id
-  %br
-  = d.label :sn
-  = d.text_field :sn
-  %br
-  = d.label :m
-  = d.text_field :m
-  %br
-  = d.label :t
-  = d.text_field :t
-  %br
-  = d.label :w
-  = d.text_field :w
-  %br
-  = d.label :r
-  = d.text_field :r
-  %br
-  = d.label :f
-  = d.text_field :f
-  %br
-  = d.label :sa
-  = d.text_field :sa
-  %br
-  = d.submit
+%table
+  %tr
+    %th{rowspan:2} Carrier
+    %th{colspan:2} Sunday
+    %th{colspan:2} Monday
+    %th{colspan:2} Tuesday
+    %th{colspan:2} Wednesday
+    %th{colspan:2} Thursday
+    %th{colspan:2} Friday
+    %th{colspan:2} Saturday
+  %tr
+    %th True
+    %th False
+    %th True
+    %th False
+    %th True
+    %th False
+    %th True
+    %th False
+    %th True
+    %th False
+    %th True
+    %th False
+    %th True
+    %th False
+  %tr
+    = form_for @day do |d|
+      = d.hidden_field :destination_id, value:"#{@destination.id}"
+      = d.hidden_field :carrier_id, class:"carrier_input"
+      - carrier_options = []
+      - @carriers.each do |c|
+        - carrier_options.push("<option value=#{c.id} class='carrier'>#{c.name}</option>".html_safe)
+      %td= select_tag :carrier, options_for_select(carrier_options), {class: "carriers", rowspan:2}
+
+      / Sunday
+      %td= d.radio_button :sn, true
+      %td= d.radio_button :sn, false, checked:true
+      %td= d.radio_button :m, true
+      %td= d.radio_button :m, false, checked:true
+      %td= d.radio_button :t, true
+      %td= d.radio_button :t, false, checked:true
+      %td= d.radio_button :w, true
+      %td= d.radio_button :w, false, checked:true
+      %td= d.radio_button :r, true
+      %td= d.radio_button :r, false, checked:true
+      %td= d.radio_button :f, true
+      %td= d.radio_button :f, false, checked:true
+      %td= d.radio_button :sa, true
+      %td= d.radio_button :sa, false, checked:true
+      %td= d.submit("Add Apporved Delivery Days For This Carrier")
+
+:javascript
+  $(document).ready(function(){
+    
+    $(".carriers option:even").remove();
+
+    $("#day_carrier_id").val($("select option:selected").attr("value"));
+    $(".carriers").on("change", function(){
+      $("#day_carrier_id").val($("select option:selected").attr("value"));
+    });
+
+  });

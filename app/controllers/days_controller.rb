@@ -5,6 +5,8 @@ def index
 
   def new
     @day = Day.new
+    @destination = Destination.find(params[:destination_id])
+    @carriers = Carrier.all
   end
 
   def create

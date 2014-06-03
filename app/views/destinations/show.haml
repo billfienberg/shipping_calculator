@@ -63,7 +63,7 @@
       %tr
         %td= h.holiday.name
         %td= h.holiday.date
-        %td= link_to "Delete", destination_destination_holiday_path(@destination.id, h.holiday_id), method:"delete"
+        %td= link_to "Delete", destination_holiday_path(h.id), method: "delete", data: { confirm: "Are you sure?" }
     %tr
       %td{colspan:2}= link_to "Add a Holiday to this Destination", new_destination_destination_holiday_path(@destination)
 %br

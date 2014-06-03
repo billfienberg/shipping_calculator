@@ -43,8 +43,9 @@ def index
 
   def destroy
     @destination_holiday = DestinationHoliday.find(params[:id])
+    @destination_holiday.destroy
     respond_to do |format|
-      format.html { redirect_to destinations_path }
+      format.html { redirect_to destination_path(@destination_holiday.destination.id) }
       format.js { render :layout => false }
     end
   end

@@ -14,3 +14,5 @@
     %td= Destination.find(@destination_holiday.destination_id).state
     %td= Destination.find(@destination_holiday.destination_id).zip
     %td= Holiday.find(@destination_holiday.holiday_id).name
+    %td= link_to "Edit", '#'
+    %td= link_to "Delete", destination_holiday_path(params[:id]), method: "delete", data: { confirm: "Are you sure?" }

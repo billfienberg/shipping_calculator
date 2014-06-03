@@ -1,0 +1,41 @@
+%h3 Transit Times
+%table
+  %tr
+    %td
+    %td
+    %th{colspan: 6} Origin
+    %th{colspan: 6} Destination
+  %tr
+    %th ID
+    %th Carrier
+    %th Origin ID
+    %th Origin Name
+    %th Origin Address
+    %th Origin City
+    %th Origin State
+    %th Origin Zip
+    %th Destination ID
+    %th Destination Name
+    %th Destination Address
+    %th Destination City
+    %th Destination State
+    %th Destination Zip
+    %th Transit Time
+  %tr
+    %td= @transit_time.id
+    %td= Carrier.find(@transit_time.carrier_id).name
+    %td= @transit_time.origin_id
+    %td= Origin.find(@transit_time.origin_id).name
+    %td= Origin.find(@transit_time.origin_id).address
+    %td= Origin.find(@transit_time.origin_id).city
+    %td= Origin.find(@transit_time.origin_id).state
+    %td= Origin.find(@transit_time.origin_id).zip
+    %td= @transit_time.destination_id
+    %td= Destination.find(@transit_time.destination).name
+    %td= Destination.find(@transit_time.destination).address
+    %td= Destination.find(@transit_time.destination).city
+    %td= Destination.find(@transit_time.destination).state
+    %td= Destination.find(@transit_time.destination).zip
+    = form_for @transit_time do |tt|
+      %td= tt.text_field :number_of_days, placeholder:3
+      %td= tt.submit "Update Transit Time"

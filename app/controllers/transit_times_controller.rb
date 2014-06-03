@@ -21,7 +21,19 @@ def index
 
   def show
     @transit_time = TransitTime.find(params[:id])
-    
+  end
+
+  def edit
+    @transit_time = TransitTime.find(params[:id])
+  end
+
+  def update
+    @transit_time = TransitTime.find(params[:id])
+    @transit_time.update(transit_time_params)
+    respond_to do |format|
+      format.html { redirect_to :transit_time }
+      format.js { render :layout => false }
+    end
   end
 
 

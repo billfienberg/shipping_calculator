@@ -15,6 +15,7 @@
 			%td= o.city
 			%td= o.state
 			%td= o.zip
+			%td= link_to "View", origin_path(o.id)
 			%td= link_to "Edit", edit_origin_path(o.id)
 			%td= link_to "Delete", origin_path(o.id), method:"delete", data: { confirm: "Are you sure?"}
 

@@ -13,5 +13,5 @@
     %td= @origin.state
     %td= @origin.zip
     %td= link_to "Edit", edit_origin_path(@origin.id)
-    %td= link_to "Delete", '#'
+    %td= link_to "Delete", origin_path(@origin.id), method: "delete", data: { confirm: "Are you sure?" }
 = link_to "View All Origins", origins_path

@@ -22,7 +22,7 @@
       - @carriers.push(Carrier.find(cd.carrier_id).name)
     %td= @carriers.join " "
     %td= link_to "Edit", edit_destination_path
-    %td= link_to "Delete", destination_path, method: "delete"
+    %td= link_to "Delete", destination_path, method: "delete", data: { confirm: "Are you sure?" }
   %tr
     %th Carrier
     %th Sunday

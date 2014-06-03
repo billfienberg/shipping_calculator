@@ -35,14 +35,14 @@
   - @carrier_destinations.each do |cd|
     %tr
       %td= Carrier.find(cd.carrier_id).name
-      - if Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.sn
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.m
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.t
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.w
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.r
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.f
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).first.sa
+      - if Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.sn
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.m
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.t
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.w
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.r
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.f
+        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.sa
         %td= link_to "Edit", '#'
         %td= link_to "Delete", '#'
       - else

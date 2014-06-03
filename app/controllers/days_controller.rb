@@ -13,7 +13,7 @@ def index
   def create
     @day = Day.new(day_params)
     if @day.save
-      redirect_to @day
+      redirect_to days_path
     else
       render "new"
     end
@@ -21,6 +21,9 @@ def index
 
   def show
     @day = Day.find(params[:id])
+    @destination = Destination.find(params[:destination_id])
+    @carrier = Carrier.find(params[:carrier_id])
+
   end
 
 

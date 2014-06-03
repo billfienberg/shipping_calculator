@@ -5,16 +5,14 @@ class CarrierDestinationsController < ApplicationController
 
   def new
     @destination = Destination.find(params[:destination_id])
-    @destinations = Destination.all
     @carrier_destination = CarrierDestination.new
     @carriers = Carrier.all
   end
 
   def create
-    @carrier_destinations = CarrierDestination.new(carrier_destination_params)
-    @destination = Destination.all
-    if @carrier_destinations.save
-      redirect_to destinations_path
+    @carrier_destination = CarrierDestination.new(carrier_destination_params)
+    if @carrier_destination.save
+      redirect_to destination_carrier_destination_path(@carrier_destination.destination_id, @carrier_destination)
     else
       render "new"
     end

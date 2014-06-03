@@ -1,7 +1,6 @@
 class DestinationsController < ApplicationController
   def index
     @destinations = Destination.all
-    @carrier_destinations = CarrierDestination.where(destination_id:params[:destination_id])
   end
 
   def new

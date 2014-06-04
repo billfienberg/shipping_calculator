@@ -1,17 +1,26 @@
-= form_tag pages_results_path, method: :get do
-  = label_tag :origin
-  - origin_options = []
-  - @origins.each do |o|
-    - origin_options.push("<option value=#{o.id} class='origin'>#{o.name}: #{o.address} #{o.city} #{o.state} #{o.zip}</option>".html_safe)
-  = select_tag :origin, options_for_select(origin_options), {class: "origins"}
-  %br
-  = label_tag :destination
-  - destination_options = []
-  - @destinations.each do |d|
-    - destination_options.push("<option value=#{d.id} class='destination'>#{d.name}: #{d.address} #{d.city} #{d.state} #{d.zip}</option>".html_safe)
-  = select_tag :destination, options_for_select(destination_options), {class: "destinations"}
-  %br
-  = label_tag :pickup_date
-  = text_field_tag :pickup_date, '', class:"pickup_date", required:true, placeholder:"dd/mm/yyyy"
-  %br
-  = submit_tag "Find Recommended Carrier(s)"
+%h2.centered_h_tag Calculate the Earliest and Expected Delivery Days
+%h3.centered_h_tag Step 1: Select an Origin
+%h3.centered_h_tag Step 2: Select a Destination
+%h3.centered_h_tag Step 3: Input  a Pickup Date
+%h3.centered_h_tag Step 4: Submit
+%table.centered_table
+  %tr
+    %th Origin
+    %th Destination
+    %th Pickup date
+    %th Submit
+  %tr
+    = form_tag pages_results_path, method: :get do
+      - origin_options = []
+      - @origins.each do |o|
+        - origin_options.push("<option value=#{o.id} class='origin'>#{o.name}: #{o.address} #{o.city} #{o.state} #{o.zip}</option>".html_safe)
+      %td= select_tag :origin, options_for_select(origin_options), {class: "origins"}
+      %br
+      - destination_options = []
+      - @destinations.each do |d|
+        - destination_options.push("<option value=#{d.id} class='destination'>#{d.name}: #{d.address} #{d.city} #{d.state} #{d.zip}</option>".html_safe)
+      %td= select_tag :destination, options_for_select(destination_options), {class: "destinations"}
+      %br
+      %td= text_field_tag :pickup_date, '', class:"pickup_date", required:true, placeholder:"dd/mm/yyyy"
+      %br
+      %td= submit_tag "Find Recommended Carrier(s)"

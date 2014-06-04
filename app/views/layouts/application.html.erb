@@ -11,9 +11,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
+  <%= link_to "Home", root_path %>
 
 <%= yield %>
 <br>
-<%= link_to "Home", root_path %>
 </body>
 </html>

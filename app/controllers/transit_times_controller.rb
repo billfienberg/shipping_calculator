@@ -4,10 +4,16 @@ def index
   end
 
   def new
-    @carriers = Carrier.all
-    @origins = Origin.all
-    @destinations = Destination.all
     @transit_time = TransitTime.new
+    if params[:origin_id] && params[:destination_id] && params[:carrier_id]
+      @carrier = Carrier.find(params[:carrier_id])
+      @origin = Origin.find(params[:origin_id])
+      @destination = Destination.find(params[:destination_id])
+    else 
+      @carriers = Carrier.all
+      @origins = Origin.all
+      @destinations = Destination.all
+    end
   end
 
   def create

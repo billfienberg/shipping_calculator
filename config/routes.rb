@@ -3,6 +3,13 @@ Rails.application.routes.draw do
   get 'pages/index', to: 'pages#index'
   get 'pages/calculate', to: 'pages#calculate'
   get 'pages/results', to: 'pages#results'
+  resources :origins do
+    resources :destinations do
+      resources :carriers do
+        resources :transit_times
+      end
+    end
+  end
   resources :destinations do 
     resources :carrier_destinations
     resources :destination_holidays

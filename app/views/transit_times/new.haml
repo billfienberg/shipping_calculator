@@ -1,29 +1,63 @@
 %h3 Add a New Transit Time
-%table
-  %tr
-    %th Carrier
-    %th Origin
-    %th Destination
-    %th Number of Days
-  %tr
-    = form_for @transit_time do |tt|
-      - carrier_options = []
-      - @carriers.each do |c|
-        - carrier_options.push("<option value=#{c.id} class='carrier'>#{c.name}</option>".html_safe)
-      %td= select_tag :carrier, options_for_select(carrier_options), {class: "carriers"}
-      = tt.text_field :carrier_id, class:"carrier_input"
-      - origin_options = []
-      - @origins.each do |o|
-        - origin_options.push("<option value=#{o.id} class='origin'>#{o.name}: #{o.address} #{o.city} #{o.state} #{o.zip}</option>".html_safe)
-      %td= select_tag :origin, options_for_select(origin_options), {class: "origins"}
-      = tt.text_field :origin_id, class:"origin_input"
-      - destination_options = []
-      - @destinations.each do |d|
-        - destination_options.push("<option value=#{d.id} class='origin'>#{d.name}: #{d.address} #{d.city} #{d.state} #{d.zip}</option>".html_safe)
-      %td= select_tag :destination, options_for_select(destination_options), {class: "destinations"}
-      = tt.text_field :destination_id, class:"destination_input"
-      %td= tt.text_field :number_of_days, placeholder: 3, required:true
-      %td= tt.submit
+- if params[:origin_id] && params[:destination_id] && params[:carrier_id]
+  %table
+    %tr
+      %th Carrier
+      %th Origin Name
+      %th Origin Address
+      %th Origin City
+      %th Origin State
+      %th Origin Zip
+      %th Destination Name
+      %th Destination Address
+      %th Destination City
+      %th Destination State
+      %th Destination Zip
+      %th Number of Days
+    %tr
+      = form_for @transit_time do |tt|
+        %td= tt.hidden_field :origin_id, value: "#{@origin.id}", class:"origin_hidden_input"
+        %td= tt.hidden_field :destination_id, value: "#{@destination.id}", class:"destination_hidden_input"
+        %td= tt.hidden_field :carrier_id, value: "#{@carrier.id}", class:"carrier_hidden_input"
+        %td= Carrier.find(@carrier.id).name
+        %td= Origin.find(@origin.id).name
+        %td= Origin.find(@origin.id).address
+        %td= Origin.find(@origin.id).city
+        %td= Origin.find(@origin.id).state
+        %td= Origin.find(@origin.id).zip
+        %td= Destination.find(@destination.id).name
+        %td= Destination.find(@destination.id).address
+        %td= Destination.find(@destination.id).city
+        %td= Destination.find(@destination.id).state
+        %td= Destination.find(@destination.id).zip
+        %td= tt.text_field :number_of_days, placeholder: 3, required:true
+        %td= tt.submit
+- else 
+  %table 
+    %tr
+      %th Origin
+      %th Destination
+      %th Carrier
+      %th Transit Time (days)
+    %tr
+      = form_for @transit_time do |tt|
+        %td= tt.text_field :origin_id, class:"origin_input"
+        %td= tt.text_field :destination_id, class:"destination_input"
+        %td= tt.text_field :carrier_id, class:"carrier_input"
+        - origin_options = []
+        - @origins.each do |o|
+          - origin_options.push("<option value=#{o.id} class='origin'>#{o.name}: #{o.address} #{o.city} #{o.state} #{o.zip}</option>".html_safe)
+        %td= select_tag :origins, options_for_select(origin_options), {class: "origins"}
+        - destination_options = []
+        - @destinations.each do |o|
+          - destination_options.push("<option value=#{o.id} class='destination'>#{o.name}: #{o.address} #{o.city} #{o.state} #{o.zip}</option>".html_safe)
+        %td= select_tag :destinations, options_for_select(destination_options), {class: "destinations"}
+        - carrier_options = []
+        - @carriers.each do |c|
+          - carrier_options.push("<option value=#{c.id} class='carrier'>#{c.name}</option>".html_safe)
+        %td= select_tag :carriers, options_for_select(carrier_options), {class: "carriers"}
+        %td= tt.text_field :number_of_days, placeholder: 3, required: true
+        %td= tt.submit
 
 = link_to "View All Transit Times", transit_times_path
 
@@ -32,11 +66,14 @@
 
     $(".carriers option:even").remove();
 
-    console.log("This is coming form transit_times.js")
+    $(".origin_hidden_input").parent().hide()
+    $(".destination_hidden_input").parent().hide()
+    $(".carrier_hidden_input").parent().hide()
+
     $(".carrier_input").val($(".carriers").val())
     $(".origin_input").val($(".origins").val())
     $(".destination_input").val($(".destinations").val())
-    $(".carrier_input, .origin_input, .destination_input").hide();
+    $(".carrier_input, .origin_input, .destination_input").parent().hide();
 
     $(".carriers").on("change", function(){
       $(".carrier_input").val($(".carriers").val())

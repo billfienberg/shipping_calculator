@@ -1,11 +1,40 @@
-= form_for @destination_holiday do |dh|
-  = dh.hidden_field :destination_id, value:"#{@destination.id}"
-  = dh.hidden_field :holiday_id
-  - holiday_options = []
-  - @holidays.each do |h|
-    - holiday_options.push("<option value=#{h.id} class='holiday'>#{h.name}, #{h.date}</option>".html_safe)
-  = select_tag :holidays, options_for_select(holiday_options), {class: "holidays"}
-  = dh.submit
+%h3 Add a Holiday to this Destination
+%table
+  %tr
+    %th Location ID
+    %th Name
+    %th Address
+    %th City
+    %th State
+    %th Zip
+  %tr
+    %td= @destination.id
+    %td= @destination.name
+    %td= @destination.address
+    %td= @destination.city
+    %td= @destination.state
+    %td= @destination.zip
+%br
+%table
+  %tr
+    %th{colspan: 2} Current Holidays
+  %tr
+    %th Name
+    %th Date
+  - @destination_holidays.each do |d|
+    %tr
+      %td= Holiday.find(d.id).name
+      %td= Holiday.find(d.id).date
+  = form_for @destination_holiday do |dh|
+    = dh.hidden_field :destination_id, value:"#{@destination.id}"
+    = dh.hidden_field :holiday_id
+    - holiday_options = []
+    - @holidays.each do |h|
+      - holiday_options.push("<option value=#{h.id} class='holiday'>#{h.name}, #{h.date}</option>".html_safe)
+    %td= select_tag :holidays, options_for_select(holiday_options), {class: "holidays"}
+    %td= dh.submit
+
+= link_to "Back", destination_path(@destination.id)
 
 :javascript
   $(document).ready(function(){

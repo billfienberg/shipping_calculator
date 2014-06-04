@@ -36,6 +36,7 @@
       %td= d.radio_button :sa, false, checked:true
       %td= d.submit("Add Apporved Delivery Days For This Carrier")
 
+= link_to "Back", destination_path(@destination.id)
 :javascript
   $(document).ready(function(){
     

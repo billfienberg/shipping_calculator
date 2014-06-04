@@ -40,7 +40,10 @@
     %td= select_tag :holidays, options_for_select(holiday_options), {class: "holidays"}
     %td= dh.submit
 
+= link_to "View All Holidays", holidays_path
+%br
 = link_to "Back", destination_path(@destination.id)
+
 
 :javascript
   $(document).ready(function(){

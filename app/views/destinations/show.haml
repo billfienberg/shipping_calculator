@@ -35,14 +35,15 @@
   - @carrier_destinations.each do |cd|
     %tr
       %td= Carrier.find(cd.carrier_id).name
-      - if Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.sn
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.m
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.t
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.w
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.r
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.f
-        %td= Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.sa
+      - @day = Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last
+      - if @day
+        %td{class:"#{@day.sn}"}= @day.sn
+        %td{class:"#{@day.m}"}= @day.m
+        %td{class:"#{@day.t}"}= @day.t
+        %td{class:"#{@day.w}"}= @day.w
+        %td{class:"#{@day.r}"}= @day.r
+        %td{class:"#{@day.f}"}= @day.f
+        %td{class:"#{@day.sa}"}= @day.sa
         %td= link_to "Edit", edit_destination_carrier_day_path(@destination.id, cd.carrier_id, Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.id)
         %td= link_to "Delete", destination_carrier_day_path(@destination.id, cd.carrier_id, Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.id), method: "delete", data: { confirm: "Are you sure?" }
       - else

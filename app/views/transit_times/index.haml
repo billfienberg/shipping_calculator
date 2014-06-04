@@ -5,6 +5,7 @@
     %th{rowspan: 2} Carrier
     %th{colspan: 6} Origin
     %th{colspan: 6} Destination
+    %th{rowspan: 2} Transit Time
   %tr
     %th Origin ID
     %th Origin Name
@@ -18,7 +19,6 @@
     %th Destination City
     %th Destination State
     %th Destination Zip
-    %th Transit Time
   - @transit_times.each do |tt|
     %tr
       %td= tt.id

@@ -312,9 +312,9 @@
 	- @recommended.each do |r|
 		%tr
 			%td= r[:carrier]
-			%td= r[:expected]
-			%td= r[:actual]
+			%td= r[:expected].strftime('%A %B %d, %Y')
+			%td= r[:actual].strftime('%A %B %d, %Y')
 			- if r[:expected] == r[:actual]
-				%td Yes
+				%td.true Yes
 			- else
-				%td No
+				%td.false No

@@ -24,7 +24,9 @@
     %td= link_to "Edit", edit_destination_path(@destination.id)
     %td= link_to "Delete", destination_path, method: "delete", data: { confirm: "Are you sure?" }
   %tr
-    %th Carrier
+    %th{rowspan: 2} Carrier
+    %th{colspan: 7} Can the Carrier Deliver to this Location on This Day of the Week?
+  %tr
     %th Sunday
     %th Monday
     %th Tuesday

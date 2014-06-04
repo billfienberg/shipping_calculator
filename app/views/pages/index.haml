@@ -1,22 +1,22 @@
-%h3 Welcome to the Earliest Delivery Day Shipping Calculator.
-= link_to "Add an Origin", new_origin_path
-%br
-= link_to "View All Origins", origins_path
-%br
-= link_to "Add a Destination", new_destination_path
-%br
-= link_to "View All Destinations", destinations_path
-%br
-= link_to "Add a Carrier", new_carrier_path
-%br
-= link_to "View All Carriers", carriers_path
-%br
-= link_to "Add a Transit Time", new_transit_time_path
-%br
-= link_to "View All Transit Times", transit_times_path
-%br
-= link_to "Add a Holiday", new_holiday_path
-%br
-= link_to "View All Holidays", holidays_path
-%br
-= link_to "Calculate the Expected Delivery Day", pages_calculate_path
+%h3.centered_tag Welcome to the Earliest Delivery Day Shipping Calculator.
+%table.centered_table
+  %tr
+    %th Origins
+    %th Destinations
+    %th Carriers
+    %th Transit Times
+    %th Holidays
+  %tr
+    %td= link_to "Add an Origin", new_origin_path
+    %td= link_to "Add a Destination", new_destination_path
+    %td= link_to "Add a Carrier", new_carrier_path
+    %td= link_to "Add a Transit Time", new_transit_time_path
+    %td= link_to "Add a Holiday", new_holiday_path
+  %tr
+    %td= link_to "View All Origins", origins_path
+    %td= link_to "View All Destinations", destinations_path
+    %td= link_to "View All Carriers", carriers_path
+    %td= link_to "View All Transit Times", transit_times_path
+    %td= link_to "View All Holidays", holidays_path
+
+%h1.centered_tag= link_to "Calculate a Shipment", pages_calculate_path

@@ -49,7 +49,7 @@
         %td= link_to "Edit", edit_destination_carrier_day_path(@destination.id, cd.carrier_id, Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.id)
         %td= link_to "Delete", destination_carrier_day_path(@destination.id, cd.carrier_id, Day.where(destination_id:@destination.id, carrier_id:cd.carrier_id).last.id), method: "delete", data: { confirm: "Are you sure?" }
       - else
-        %td{colspan:7}= link_to "Add Approved Delivery Days to this Carrier", new_destination_carrier_destination_path(@destination.id, cd.carrier_id)
+        %td{colspan:7}= link_to "Add Approved Delivery Days to this Carrier", new_destination_carrier_day_path(@destination, cd.carrier_id)
   %tr
     %td= link_to "Add Approved Carrier", new_destination_carrier_destination_path(@destination.id) 
   %tr

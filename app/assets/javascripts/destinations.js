@@ -21,7 +21,7 @@ $(document).ready(function(){
     // var carrier = this.parent().parent().nextUntil() = All <tr> elements with class="name" until it reaches a <tr> element with class="location"
     if (current.id === previous.id && current.context === previous.context) {
       if (previous.context === current.context) {
-        $(".days, .allowed").hide();
+        $(".weekdays, .allowed").hide();
         current.context = NaN;
       } else {
         days.show();
@@ -29,17 +29,17 @@ $(document).ready(function(){
       }
     } else {
       if (current.id === previous.id && days.css("display") !== "none") {
-        $(".days, .allowed").hide();
+        $(".weekdays, .allowed").hide();
         days.show();
         carrier.show();
       } else if (current.id === previous.id && days.css("display") === "none") {
-        $(".days, .allowed").hide();
+        $(".weekdays, .allowed").hide();
         days.show();
         carrier.show();
       } else if (current.id !== previous.id && days.css("display") !== "none") {
-        $(".days, .allowed").hide();
+        $(".weekdays, .allowed").hide();
       } else if (current.id !== previous.id && days.css("display") === "none") {
-        $(".days, .allowed").hide();
+        $(".weekdays, .allowed").hide();
         days.show();
         carrier.show();
       }

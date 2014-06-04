@@ -1,13 +1,12 @@
 %h3 Transit Times
 %table
   %tr
-    %td
-    %td
+    %th{rowspan: 2} ID
+    %th{rowspan: 2} Carrier
     %th{colspan: 6} Origin
     %th{colspan: 6} Destination
+    %th{rowspan: 2} Transit Time (days)
   %tr
-    %th ID
-    %th Carrier
     %th Origin ID
     %th Origin Name
     %th Origin Address
@@ -20,7 +19,6 @@
     %th Destination City
     %th Destination State
     %th Destination Zip
-    %th Transit Time
   %tr
     %td= @transit_time.id
     %td= Carrier.find(@transit_time.carrier_id).name
@@ -37,7 +35,7 @@
     %td= Destination.find(@transit_time.destination).state
     %td= Destination.find(@transit_time.destination).zip
     = form_for @transit_time do |tt|
-      %td= tt.text_field :number_of_days, placeholder:3
+      %td= tt.text_field :number_of_days, placeholder:3, required: true
       %td= tt.submit "Update Transit Time"
 = link_to "Delete This Transit Time", transit_time_path(@transit_time.id), method: "delete", data: { confirm: "Are you sure?" }
 %br

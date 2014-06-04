@@ -37,7 +37,7 @@ def index
     @transit_time = TransitTime.find(params[:id])
     @transit_time.update(transit_time_params)
     respond_to do |format|
-      format.html { redirect_to :transit_time }
+      format.html { redirect_to :transit_times }
       format.js { render :layout => false }
     end
   end

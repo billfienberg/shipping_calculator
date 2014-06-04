@@ -5,7 +5,7 @@
     %th{rowspan: 2} Carrier
     %th{colspan: 6} Origin
     %th{colspan: 6} Destination
-    %th{rowspan: 2} Transit Time
+    %th{rowspan: 2} Transit Time (days)
   %tr
     %th Origin ID
     %th Origin Name
@@ -42,3 +42,5 @@
       %td= link_to "Edit", edit_transit_time_path(tt.id)
       %td= link_to "Delete", transit_time_path(tt.id), method: "delete", data: { confirm: "Are you sure?" }
 = link_to "Add a New Transit Time", new_transit_time_path
+%br
+= link_to "View All Destinations", destinations_path

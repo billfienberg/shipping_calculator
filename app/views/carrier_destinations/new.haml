@@ -7,7 +7,8 @@
     %td City
     %td State
     %td Zip
-    %td Carrier
+    %td Current Approved Carriers
+    %td New Approved Carrier
     %td Submit
   %tr
     %td.location_id{value:"#{@destination.id}"}= @destination.id
@@ -16,6 +17,11 @@
     %td= @destination.city
     %td= @destination.state
     %td= @destination.zip
+    - carriers = []
+    - CarrierDestination.where(destination_id:@destination.id).each do |cd|
+      - carriers.push(Carrier.find(cd.carrier_id).name)
+      - carriers.sort_by!{ |c| c.downcase }
+    %td= carriers.join(" ")
     = form_for @carrier_destination do |c|
       %td= c.text_field :carrier_id, class:"carrier_input"
       %td= c.text_field :destination_id, class:"destination_input"

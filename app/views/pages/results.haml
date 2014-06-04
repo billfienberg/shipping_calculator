@@ -31,10 +31,13 @@
 %br
 %table
 	%tr
-		%th Carrier
-		%th Pickup Date
-		%th Transit Time
-		%th Expected Delivery Day (EDD)
+		%th{rowspan: 2} Carrier
+		%th{rowspan: 2} Pickup Date
+		%th{rowspan: 2} Transit Time
+		%th{rowspan: 2} Expected Delivery Day (EDD)
+		%th{colspan: 7} Can the carrier can deliver to this location on this day of the week
+		%th{rowspan: 2} Can Deliver on EDD?
+	%tr
 		%th Sunday
 		%th Monday
 		%th Tuesday
@@ -42,7 +45,6 @@
 		%th Thursday
 		%th Friday
 		%th Saturday
-		%th Can Deliver on EDD?
 	- @recommended = []
 	- if @carriers.length == 0
 		%td= link_to "Add an Approved Carrier for this Destination", new_destination_carrier_destination_path(@destination.id)

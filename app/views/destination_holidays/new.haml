@@ -21,10 +21,16 @@
   %tr
     %th Name
     %th Date
-  - @destination_holidays.each do |d|
+  - if @destination_holidays.length == 0
     %tr
-      %td= Holiday.find(d.id).name
-      %td= Holiday.find(d.id).date
+      %td{colspan: 2} This destination has no holidays 
+  - else
+    - @destination_holidays.each do |d|
+      %tr
+        %td= Holiday.find(d.holiday_id).name
+        %td= Holiday.find(d.holiday_id).date
+  %tr
+    %th{colspan: 2} Add a Holiday
   = form_for @destination_holiday do |dh|
     = dh.hidden_field :destination_id, value:"#{@destination.id}"
     = dh.hidden_field :holiday_id

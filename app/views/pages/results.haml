@@ -36,7 +36,6 @@
 		%th{rowspan: 2} Transit Time
 		%th{rowspan: 2} Expected Delivery Day (EDD)
 		%th{colspan: 7} Can the Carrier Deliver to this Location on This Day of the Week?
-		%th{rowspan: 2} Can Deliver on EDD?
 	%tr
 		%th Sunday
 		%th Monday
@@ -92,7 +91,6 @@
 					%td{class:"#{@day.r}"}= @day.r
 					%td{class:"#{@day.f}"}= @day.f
 					%td{class:"#{@day.sa}"}= @day.sa
-					%td= @earliest
 					- @holidays_array = []
 					- @holidays.each do |h|
 						- @holidays_array.push(Holiday.find(h.holiday_id).date.to_s)
@@ -100,189 +98,189 @@
 						/ EDD
 
 					- if @dotw == "Sunday" && @day.sn == true && !@holidays_array.include?(@earliest.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @earliest})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @earliest, expected: @earliest})
 					- elsif @dotw == "Monday" && @day.m == true && !@holidays_array.include?(@earliest.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @earliest})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @earliest, expected: @earliest})
 					- elsif @dotw == "Tuesday" && @day.t == true && !@holidays_array.include?(@earliest.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @earliest})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @earliest, expected: @earliest})
 					- elsif @dotw == "Wednesday" && @day.w == true && !@holidays_array.include?(@earliest.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @earliest})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @earliest, expected: @earliest})
 					- elsif @dotw == "Thursday" && @day.r == true && !@holidays_array.include?(@earliest.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @earliest})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @earliest, expected: @earliest})
 					- elsif @dotw == "Friday" && @day.f == true && !@holidays_array.include?(@earliest.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @earliest})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @earliest, expected: @earliest})
 					- elsif @dotw == "Saturday" && @day.sa == true && !@holidays_array.include?(@earliest.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @earliest})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @earliest, expected: @earliest})
 
 						/ EDD + 1
 
 					- elsif @dotw_plus_1 == "Sunday" && @day.sn == true && !@holidays_array.include?(@edd_plus_1.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_1})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_1, expected: @earliest})
 					- elsif @dotw_plus_1 == "Monday" && @day.m == true && !@holidays_array.include?(@edd_plus_1.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_1})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_1, expected: @earliest})
 					- elsif @dotw_plus_1 == "Tuesday" && @day.t == true && !@holidays_array.include?(@edd_plus_1.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_1})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_1, expected: @earliest})
 					- elsif @dotw_plus_1 == "Wednesday" && @day.w == true && !@holidays_array.include?(@edd_plus_1.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_1})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_1, expected: @earliest})
 					- elsif @dotw_plus_1 == "Thursday" && @day.r == true && !@holidays_array.include?(@edd_plus_1.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_1})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_1, expected: @earliest})
 					- elsif @dotw_plus_1 == "Friday" && @day.f == true && !@holidays_array.include?(@edd_plus_1.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_1})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_1, expected: @earliest})
 					- elsif @dotw_plus_1 == "Saturday" && @day.sa == true && !@holidays_array.include?(@edd_plus_1.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_1})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_1, expected: @earliest})
 
 						/ EDD + 2
 
 					- elsif @dotw_plus_2 == "Sunday" && @day.sn == true && !@holidays_array.include?(@edd_plus_2.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_2})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_2, expected: @earliest})
 					- elsif @dotw_plus_2 == "Monday" && @day.m == true && !@holidays_array.include?(@edd_plus_2.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_2})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_2, expected: @earliest})
 					- elsif @dotw_plus_2 == "Tuesday" && @day.t == true && !@holidays_array.include?(@edd_plus_2.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_2})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_2, expected: @earliest})
 					- elsif @dotw_plus_2 == "Wednesday" && @day.w == true && !@holidays_array.include?(@edd_plus_2.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_2})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_2, expected: @earliest})
 					- elsif @dotw_plus_2 == "Thursday" && @day.r == true && !@holidays_array.include?(@edd_plus_2.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_2})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_2, expected: @earliest})
 					- elsif @dotw_plus_2 == "Friday" && @day.f == true && !@holidays_array.include?(@edd_plus_2.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_2})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_2, expected: @earliest})
 					- elsif @dotw_plus_2 == "Saturday" && @day.sa == true && !@holidays_array.include?(@edd_plus_2.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_2})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_2, expected: @earliest})
 
 						/ EDD + 3
 
 					- elsif @dotw_plus_3 == "Sunday" && @day.sn == true && !@holidays_array.include?(@edd_plus_3.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_3})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_3, expected: @earliest})
 					- elsif @dotw_plus_3 == "Monday" && @day.m == true && !@holidays_array.include?(@edd_plus_3.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_3})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_3, expected: @earliest})
 					- elsif @dotw_plus_3 == "Tuesday" && @day.t == true && !@holidays_array.include?(@edd_plus_3.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_3})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_3, expected: @earliest})
 					- elsif @dotw_plus_3 == "Wednesday" && @day.w == true && !@holidays_array.include?(@edd_plus_3.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_3})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_3, expected: @earliest})
 					- elsif @dotw_plus_3 == "Thursday" && @day.r == true && !@holidays_array.include?(@edd_plus_3.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_3})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_3, expected: @earliest})
 					- elsif @dotw_plus_3 == "Friday" && @day.f == true && !@holidays_array.include?(@edd_plus_3.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_3})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_3, expected: @earliest})
 					- elsif @dotw_plus_3 == "Saturday" && @day.sa == true && !@holidays_array.include?(@edd_plus_3.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_3})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_3, expected: @earliest})
 
 						/ EDD + 4
 
 					- elsif @dotw_plus_4 == "Sunday" && @day.sn == true && !@holidays_array.include?(@edd_plus_4.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_4})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_4, expected: @earliest})
 					- elsif @dotw_plus_4 == "Monday" && @day.m == true && !@holidays_array.include?(@edd_plus_4.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_4})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_4, expected: @earliest})
 					- elsif @dotw_plus_4 == "Tuesday" && @day.t == true && !@holidays_array.include?(@edd_plus_4.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_4})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_4, expected: @earliest})
 					- elsif @dotw_plus_4 == "Wednesday" && @day.w == true && !@holidays_array.include?(@edd_plus_4.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_4})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_4, expected: @earliest})
 					- elsif @dotw_plus_4 == "Thursday" && @day.r == true && !@holidays_array.include?(@edd_plus_4.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_4})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_4, expected: @earliest})
 					- elsif @dotw_plus_4 == "Friday" && @day.f == true && !@holidays_array.include?(@edd_plus_4.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_4})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_4, expected: @earliest})
 					- elsif @dotw_plus_4 == "Saturday" && @day.sa == true && !@holidays_array.include?(@edd_plus_4.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_4})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_4, expected: @earliest})
 
 						/ EDD + 5
 
 					- elsif @dotw_plus_5 == "Sunday" && @day.sn == true && !@holidays_array.include?(@edd_plus_5.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_5})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_5, expected: @earliest})
 					- elsif @dotw_plus_5 == "Monday" && @day.m == true && !@holidays_array.include?(@edd_plus_5.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_5})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_5, expected: @earliest})
 					- elsif @dotw_plus_5 == "Tuesday" && @day.t == true && !@holidays_array.include?(@edd_plus_5.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_5})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_5, expected: @earliest})
 					- elsif @dotw_plus_5 == "Wednesday" && @day.w == true && !@holidays_array.include?(@edd_plus_5.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_5})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_5, expected: @earliest})
 					- elsif @dotw_plus_5 == "Thursday" && @day.r == true && !@holidays_array.include?(@edd_plus_5.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_5})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_5, expected: @earliest})
 					- elsif @dotw_plus_5 == "Friday" && @day.f == true && !@holidays_array.include?(@edd_plus_5.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_5})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_5, expected: @earliest})
 					- elsif @dotw_plus_5 == "Saturday" && @day.sa == true && !@holidays_array.include?(@edd_plus_5.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_5})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_5, expected: @earliest})
 
 						/ EDD + 6
 
 					- elsif @dotw_plus_6 == "Sunday" && @day.sn == true && !@holidays_array.include?(@edd_plus_6.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_6})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_6, expected: @earliest})
 					- elsif @dotw_plus_6 == "Monday" && @day.m == true && !@holidays_array.include?(@edd_plus_6.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_6})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_6, expected: @earliest})
 					- elsif @dotw_plus_6 == "Tuesday" && @day.t == true && !@holidays_array.include?(@edd_plus_6.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_6})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_6, expected: @earliest})
 					- elsif @dotw_plus_6 == "Wednesday" && @day.w == true && !@holidays_array.include?(@edd_plus_6.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_6})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_6, expected: @earliest})
 					- elsif @dotw_plus_6 == "Thursday" && @day.r == true && !@holidays_array.include?(@edd_plus_6.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_6})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_6, expected: @earliest})
 					- elsif @dotw_plus_6 == "Friday" && @day.f == true && !@holidays_array.include?(@edd_plus_6.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_6})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_6, expected: @earliest})
 					- elsif @dotw_plus_6 == "Saturday" && @day.sa == true && !@holidays_array.include?(@edd_plus_6.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_6})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_6, expected: @earliest})
 
 						/ EDD + 7
 
 					- elsif @dotw_plus_7 == "Sunday" && @day.sn == true && !@holidays_array.include?(@edd_plus_7.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_7})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_7, expected: @earliest})
 					- elsif @dotw_plus_7 == "Monday" && @day.m == true && !@holidays_array.include?(@edd_plus_7.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_7})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_7, expected: @earliest})
 					- elsif @dotw_plus_7 == "Tuesday" && @day.t == true && !@holidays_array.include?(@edd_plus_7.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_7})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_7, expected: @earliest})
 					- elsif @dotw_plus_7 == "Wednesday" && @day.w == true && !@holidays_array.include?(@edd_plus_7.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_7})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_7, expected: @earliest})
 					- elsif @dotw_plus_7 == "Thursday" && @day.r == true && !@holidays_array.include?(@edd_plus_7.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_7})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_7, expected: @earliest})
 					- elsif @dotw_plus_7 == "Friday" && @day.f == true && !@holidays_array.include?(@edd_plus_7.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_7})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_7, expected: @earliest})
 					- elsif @dotw_plus_7 == "Saturday" && @day.sa == true && !@holidays_array.include?(@edd_plus_7.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_7})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_7, expected: @earliest})
 
 						/ EDD + 8
 
 					- elsif @dotw_plus_8 == "Sunday" && @day.sn == true && !@holidays_array.include?(@edd_plus_8.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_8})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_8, expected: @earliest})
 					- elsif @dotw_plus_8 == "Monday" && @day.m == true && !@holidays_array.include?(@edd_plus_8.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_8})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_8, expected: @earliest})
 					- elsif @dotw_plus_8 == "Tuesday" && @day.t == true && !@holidays_array.include?(@edd_plus_8.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_8})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_8, expected: @earliest})
 					- elsif @dotw_plus_8 == "Wednesday" && @day.w == true && !@holidays_array.include?(@edd_plus_8.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_8})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_8, expected: @earliest})
 					- elsif @dotw_plus_8 == "Thursday" && @day.r == true && !@holidays_array.include?(@edd_plus_8.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_8})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_8, expected: @earliest})
 					- elsif @dotw_plus_8 == "Friday" && @day.f == true && !@holidays_array.include?(@edd_plus_8.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_8})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_8, expected: @earliest})
 					- elsif @dotw_plus_8 == "Saturday" && @day.sa == true && !@holidays_array.include?(@edd_plus_8.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_8})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_8, expected: @earliest})
 
 						/ EDD + 9
 
 					- elsif @dotw_plus_9 == "Sunday" && @day.sn == true && !@holidays_array.include?(@edd_plus_9.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_9})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_9, expected: @earliest})
 					- elsif @dotw_plus_9 == "Monday" && @day.m == true && !@holidays_array.include?(@edd_plus_9.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_9})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_9, expected: @earliest})
 					- elsif @dotw_plus_9 == "Tuesday" && @day.t == true && !@holidays_array.include?(@edd_plus_9.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_9})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_9, expected: @earliest})
 					- elsif @dotw_plus_9 == "Wednesday" && @day.w == true && !@holidays_array.include?(@edd_plus_9.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_9})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_9, expected: @earliest})
 					- elsif @dotw_plus_9 == "Thursday" && @day.r == true && !@holidays_array.include?(@edd_plus_9.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_9})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_9, expected: @earliest})
 					- elsif @dotw_plus_9 == "Friday" && @day.f == true && !@holidays_array.include?(@edd_plus_9.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_9})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_9, expected: @earliest})
 					- elsif @dotw_plus_9 == "Saturday" && @day.sa == true && !@holidays_array.include?(@edd_plus_9.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_9})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_9, expected: @earliest})
 
 						/ EDD + 10
 
 					- elsif @dotw_plus_10 == "Sunday" && @day.sn == true && !@holidays_array.include?(@edd_plus_10.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_10})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_10, expected: @earliest})
 					- elsif @dotw_plus_10 == "Monday" && @day.m == true && !@holidays_array.include?(@edd_plus_10.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_10})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_10, expected: @earliest})
 					- elsif @dotw_plus_10 == "Tuesday" && @day.t == true && !@holidays_array.include?(@edd_plus_10.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_10})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_10, expected: @earliest})
 					- elsif @dotw_plus_10 == "Wednesday" && @day.w == true && !@holidays_array.include?(@edd_plus_10.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_10})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_10, expected: @earliest})
 					- elsif @dotw_plus_10 == "Thursday" && @day.r == true && !@holidays_array.include?(@edd_plus_10.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_10})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_10, expected: @earliest})
 					- elsif @dotw_plus_10 == "Friday" && @day.f == true && !@holidays_array.include?(@edd_plus_10.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_10})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_10, expected: @earliest})
 					- elsif @dotw_plus_10 == "Saturday" && @day.sa == true && !@holidays_array.include?(@edd_plus_10.to_s) 
-						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, date: @edd_plus_10})
+						- @recommended.push({carrier: Carrier.find(c.carrier_id).name, actual: @edd_plus_10, expected: @earliest})
 
 						/ Else
 
@@ -308,9 +306,15 @@
 %table
 	%tr
 		%th Carrier
-		%th Actual Expected Delivery Date
+		%th Expected Delivery Date
+		%th Actual Delivery Date
+		%th Can Deliver on Expected Delivery Day?
 	- @recommended.each do |r|
 		%tr
 			%td= r[:carrier]
-			%td= r[:date]
-	
+			%td= r[:expected]
+			%td= r[:actual]
+			- if r[:expected] == r[:actual]
+				%td Yes
+			- else
+				%td No

@@ -485,15 +485,13 @@
 	%tr
 		%th Name
 		%th Date
-	- if @holidays.length < 1
-		%tr
-			%td{colspan:2}= link_to "Add a Holiday for this Location", new_destination_destination_holiday_path(@destination.id)
-	- else 
-		- @holidays.each do |h|
-			- if Holiday.exists?(id: h.holiday_id)
-				%tr
-					%td= Holiday.find(h.holiday_id).name
-					%td= Holiday.find(h.holiday_id).date
+	- @holidays.each do |h|
+		- if Holiday.exists?(id: h.holiday_id)
+			%tr
+				%td= Holiday.find(h.holiday_id).name
+				%td= Holiday.find(h.holiday_id).date
+	%tr
+		%td{colspan:2}= link_to "Add a Holiday for this Location", new_destination_destination_holiday_path(@destination.id)
 %h4 Recomended Carriers							
 %table
 	%tr

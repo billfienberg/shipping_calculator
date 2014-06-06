@@ -18,26 +18,10 @@
       %td= d.zip
       - carriers = []
       - CarrierDestination.where(destination_id:d.id).each do |cd|
-        - carriers.push(Carrier.find(cd.carrier_id).name)
+        - if Carrier.exists?(id: cd.carrier_id)
+          - carriers.push(Carrier.find(cd.carrier_id).name)
       - carriers.sort_by!{ |c| c.downcase }
       %td= carriers.join(" ")
-
-      / - if CarrierDestination.where(destination_id: d.id).first == nil 
-      / - else
-      /   - ac1 = CarrierDestination.where(destination_id: d.id).first.carrier.name
-      / - if CarrierDestination.where(destination_id: d.id).second == nil 
-      / - else
-      /   - ac2 = CarrierDestination.where(destination_id: d.id).second.carrier.name
-      / - if CarrierDestination.where(destination_id: d.id).third == nil 
-      / - else
-      /   - ac3 = CarrierDestination.where(destination_id: d.id).third.carrier.name
-
-      / = content_tag(:td, class:"carriers") do
-      /   - concat link_to ac1, '', class:"carrier #{ac1}", value: "#{ac1}" 
-      /   - concat " "
-      /   - concat link_to ac2, '', class:"carrier #{ac2}", value: "#{ac2}"
-      /   - concat " "
-      /   - concat link_to ac3, '', class:"carrier #{ac3}", value: "#{ac3}"
       %td= link_to "View", destination_path(d.id)
       %td= link_to "Edit", edit_destination_path(d.id)
       %td= link_to "Delete", destination_path(d.id), method: "delete", data: { confirm: "Are you sure?" }

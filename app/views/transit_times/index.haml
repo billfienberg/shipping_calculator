@@ -19,7 +19,7 @@
     %th Destination State
     %th Destination Zip
   - @transit_times.each do |tt|
-    -if Origin.exists?(id:tt.origin_id) && Carrier.exists?(id:tt.carrier_id)
+    -if Origin.exists?(id: tt.origin_id) && Carrier.exists?(id: tt.carrier_id) && Destination.exists?(id: tt.destination_id)
       %tr
         %td= Carrier.find(tt.carrier_id).name
         %td= tt.origin_id

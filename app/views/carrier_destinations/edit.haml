@@ -22,9 +22,10 @@
     %th Carrier Id
     %th Carrier Name
   - @carrier_destinations.each do |cd|
-    %tr
-      %td= cd.carrier_id
-      %td= Carrier.find(cd.carrier_id).name
-      %td= link_to "Delete", destination_carrier_destination_path(cd.destination_id, cd.id), method: "delete", data: { confirm: "Are you sure?" }
+    - if Carrier.exists?(id: cd.carrier_id)
+      %tr
+        %td= cd.carrier_id
+        %td= Carrier.find(cd.carrier_id).name
+        %td= link_to "Delete", destination_carrier_destination_path(cd.destination_id, cd.id), method: "delete", data: { confirm: "Are you sure?" }
   %tr
     %td{colspan:2}= link_to "Add Approved Carrier", new_destination_carrier_destination_path

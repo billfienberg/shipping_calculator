@@ -53,7 +53,7 @@
 				%td= Carrier.find(c.carrier_id).name
 				%td= @pickup_date
 				- if TransitTime.where(origin_id: @origin.id, destination_id: @destination.id, carrier_id: c.carrier_id).last == nil
-					%td= link_to "Update this carrier's transit time", new_origin_destination_carrier_transit_time_path(@origin.id, @destination.id, c.id)
+					%td= link_to "Update this carrier's transit time", new_origin_destination_carrier_transit_time_path(@origin.id, @destination.id, c.carrier_id)
 					%td= "N/A"
 				- else
 					- @transit_time = TransitTime.where(origin_id: @origin.id, destination_id: @destination.id, carrier_id: c.carrier_id).last.number_of_days.to_i
@@ -83,7 +83,7 @@
 					-	@day = Day.where(destination_id: @destination.id, carrier_id: c.carrier_id).last
 					%td= @earliest.strftime('%A %B %d, %Y')
 					- if @day == nil
-						%td{colspan:7}= link_to "Update this carrier's approved delivery days", '#'
+						%td{colspan:7}= link_to "Update this carrier's approved delivery days", new_destination_carrier_day_path(@destination.id, c.carrier_id)
 					- else
 						%td{class:"#{@day.sn}"}= @day.sn
 						%td{class:"#{@day.m}"}= @day.m
@@ -288,6 +288,7 @@
 
 							- else 
 								%td It's a holiday
+	%td= link_to "Add Approved Carrier", new_destination_carrier_destination_path(@destination.id)
 
 %br
 %table

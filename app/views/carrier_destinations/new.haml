@@ -19,8 +19,9 @@
     %td= @destination.zip
     - carriers = []
     - CarrierDestination.where(destination_id:@destination.id).each do |cd|
-      - carriers.push(Carrier.find(cd.carrier_id).name)
-      - carriers.sort_by!{ |c| c.downcase }
+      - if Carrier.exists?(id: cd.carrier_id)
+        - carriers.push(Carrier.find(cd.carrier_id).name)
+        - carriers.sort_by!{ |c| c.downcase }
     %td= carriers.join(" ")
     = form_for @carrier_destination do |c|
       %td= c.text_field :carrier_id, class:"carrier_input"

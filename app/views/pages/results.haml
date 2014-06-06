@@ -312,6 +312,7 @@
 		%th Earliest Delivery Date
 		%th Expected Delivery Date
 		%th Can Deliver on Earliest Delivery Day?
+	- @recommended.uniq!
 	- @recommended.each do |r|
 		%tr
 			%td= r[:carrier]

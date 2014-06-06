@@ -19,26 +19,27 @@
     %th Destination State
     %th Destination Zip
   - @transit_times.each do |tt|
-    %tr
-      %td= Carrier.find(tt.carrier_id).name
-      %td= tt.origin_id
-      %td= Origin.find(tt.origin_id).name
-      %td= Origin.find(tt.origin_id).address
-      %td= Origin.find(tt.origin_id).city
-      %td= Origin.find(tt.origin_id).state
-      %td= Origin.find(tt.origin_id).zip
-      %td= tt.destination_id
-      %td= Destination.find(tt.destination_id).name
-      %td= Destination.find(tt.destination_id).address
-      %td= Destination.find(tt.destination_id).city
-      %td= Destination.find(tt.destination_id).state
-      %td= Destination.find(tt.destination_id).zip
-      - if tt.number_of_days == 1
-        %td= "#{tt.number_of_days} day"
-      - else
-        %td= "#{tt.number_of_days} days"
-      %td= link_to "Edit", edit_transit_time_path(tt.id)
-      %td= link_to "Delete", transit_time_path(tt.id), method: "delete", data: { confirm: "Are you sure?" }
+    -if Origin.exists?(id:tt.origin_id)
+      %tr
+        %td= Carrier.find(tt.carrier_id).name
+        %td= tt.origin_id
+        %td= Origin.find(tt.origin_id).name
+        %td= Origin.find(tt.origin_id).address
+        %td= Origin.find(tt.origin_id).city
+        %td= Origin.find(tt.origin_id).state
+        %td= Origin.find(tt.origin_id).zip
+        %td= tt.destination_id
+        %td= Destination.find(tt.destination_id).name
+        %td= Destination.find(tt.destination_id).address
+        %td= Destination.find(tt.destination_id).city
+        %td= Destination.find(tt.destination_id).state
+        %td= Destination.find(tt.destination_id).zip
+        - if tt.number_of_days == 1
+          %td= "#{tt.number_of_days} day"
+        - else
+          %td= "#{tt.number_of_days} days"
+        %td= link_to "Edit", edit_transit_time_path(tt.id)
+        %td= link_to "Delete", transit_time_path(tt.id), method: "delete", data: { confirm: "Are you sure?" }
 = link_to "Add a New Transit Time", new_transit_time_path
 %br
 = link_to "View All Destinations", destinations_path

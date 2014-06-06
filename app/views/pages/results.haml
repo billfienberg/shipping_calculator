@@ -45,8 +45,6 @@
 		%th Friday
 		%th Saturday
 	- @recommended = []
-	- if @carriers.length == 0
-		%td= link_to "Add an Approved Carrier for this Destination", new_destination_carrier_destination_path(@destination.id)
 	- @carriers.each do |c|
 		- if Carrier.exists?(id: c.carrier_id)
 			%tr
